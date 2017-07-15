@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, AppRegistry} from 'react-native';
+import { StyleSheet, Text, View, Button, AppRegistry, ScrollView} from 'react-native';
 import Settings from './src/settings/Settings.js';
 import ModalBar from './src/ModalBar.js';
 import CreatePosts from './src/CreatePosts.js';
@@ -15,9 +15,8 @@ export default class AwesomeProject extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-
-        <Text>Index.ios.js</Text>
+      <ScrollView>
+        <Text>This is Nick's phone!!</Text>
         <Settings />
         <ModalBar />
         <CreatePosts />
@@ -25,7 +24,7 @@ export default class AwesomeProject extends React.Component {
         <PostPreview />
         <PostView />
         <SignIn />
-      </View>
+      </ScrollView>
     );
   }
 }

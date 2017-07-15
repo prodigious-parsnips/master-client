@@ -1,6 +1,25 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Slider, TextInput } from 'react-native';
 
 export default AdminSettings = () => (
-  <Text>AdminSettings</Text>
+  <View>
+    <Text>AdminSettings!!!</Text>
+    <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
+      <Text>Title:</Text>
+      <TextInput
+        style={{height: 40, width:200, borderWidth: 1, borderRadius: 5}}
+        placeholder="Title"
+        onChangeText={(text) => this.setState({text})}
+      />
+      <Text>Description:</Text>
+      <TextInput
+        style={{height: 100, width:200, borderWidth: 1, borderRadius: 5}}
+        placeholder="Description"
+      />
+      <Text>Upvote Threshold</Text>
+      <Slider style={{width:200}}/>
+      <Text>Distance Threshold</Text>
+      <Slider style={{width:200}}/>
+    </View>
+  </View>
 );
