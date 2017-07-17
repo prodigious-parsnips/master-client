@@ -7,6 +7,10 @@ export default class CreatePosts extends Component {
     this.state = {text: ''};
   }
 
+  static navigationOptions = {
+    title: 'Create Post',
+  };
+
   render() {
     return (
       <View style={{padding: 10}}>

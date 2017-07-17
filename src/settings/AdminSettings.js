@@ -9,7 +9,6 @@ export default AdminSettings = () => (
       <TextInput
         style={{height: 40, width:200, borderWidth: 1, borderRadius: 5}}
         placeholder="Title"
-        onChangeText={(text) => this.setState({text})}
       />
       <Text>Description:</Text>
       <TextInput

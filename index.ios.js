@@ -1,41 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, AppRegistry, ScrollView} from 'react-native';
+import { StackNavigator } from 'react-navigation';
+
 import Settings from './src/settings/Settings.js';
+import AdminSettings from './src/settings/AdminSettings.js';
+import UserSettings from './src/settings/UserSettings.js';
 import ModalBar from './src/ModalBar.js';
 import CreatePosts from './src/CreatePosts.js';
 import PostList from './src/PostList.js';
 import PostPreview from './src/PostPreview.js';
 import PostView from './src/PostView.js';
 import SignIn from './src/SignIn.js';
+import HomeScreen from './HomeScreen.js';
 
 
-export default class AwesomeProject extends React.Component {
-
-
-
-  render() {
-    return (
-      <ScrollView>
-        <Text>This is Nick's phone!!</Text>
-        <Settings />
-        <ModalBar />
-        <CreatePosts />
-        <PostList />
-        <PostPreview />
-        <PostView />
-        <SignIn />
-      </ScrollView>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+const AwesomeProject = StackNavigator({
+  Home: { screen: HomeScreen },
+  Settings: { screen: Settings },
+  AdminSettings: { screen: AdminSettings },
+  UserSettings: { screen: UserSettings },
+  PostView: { screen: PostView },
+  SignIn: { screen: SignIn },
+  CreatePosts: { screen: CreatePosts },
 });
 
 

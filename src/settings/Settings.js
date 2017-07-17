@@ -1,24 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, ScrollView, Button } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+
 import UserSettings from './UserSettings.js';
 import AdminSettings from './AdminSettings.js';
 
 export default class Settings extends React.Component {
+  static navigationOptions = {
+    title: 'Settings',
+  };
   render() {
+    const { navigate } = this.props.navigation;
     return (
-      <View>
+      <ScrollView>
         <Text>Settings!!!</Text>
         <Button
           title="View User Settings"
           color="#000000"
-          accessibilityLabel="Learn more about this purple button" />
+          onPress={() => navigate('UserSettings')} />
           <Button
             title="View Admin Settings"
             color="#000000"
-            accessibilityLabel="Learn more about this purple button" />
+            onPress={() => navigate('AdminSettings')} />
         <UserSettings />
         <AdminSettings />
-      </View>
+      </ScrollView>
     );
   }
 }
