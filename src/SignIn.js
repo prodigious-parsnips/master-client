@@ -1,16 +1,25 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import { SocialIcon } from 'react-native-elements'
+
+// https://github.com/oblador/react-native-vector-icons#installation
 
 export default SignIn = () => (
   <View>
     <Text>Sign In!!!</Text>
-    <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
-      <View style={{width: 100, height: 50, backgroundColor: 'powderblue'}} >
-        <Text>Sign in with this</Text>
-      </View>
-      <View style={{width: 100, height: 50, backgroundColor: 'skyblue'}}>
-        <Text>Sign in with that</Text>
-      </View>
+    <View style={styles.row}>
+      <SocialIcon title='Sign In With Facebook' button type='facebook' />
+      <SocialIcon title='Sign In With Github' button type='github' />
+      <SocialIcon title='Sign In With Twitter' button type='twitter' />
+      <SocialIcon title='Sign In With Youtube' button type='youtube' />
     </View>
+
   </View>
 );
+
+var styles = StyleSheet.create({
+  row: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+});

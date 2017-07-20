@@ -1,16 +1,37 @@
 import React from 'react';
-import { Text, View, FlatList, Button } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Button, TouchableOpacity } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 
-export default PostList = () => (
-  <View>
-    <Text>PostList!!!</Text>
-    <FlatList
-      data={[{key: 'a'}, {key: 'b'}, {key: 'c'}]}
-      renderItem={({item}) => <Button
-        title="View Post"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button" />
-      }
-    />
-  </View>
-);
+import PostPreview from './PostPreview.js'
+
+export default class PostList extends React.Component {
+
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <View>
+        <Text>PostList!!!</Text>
+        <FlatList style={styles.list}
+          data={[{key: 'a'}, {key: 'b'}, {key: 'c'}]}
+          renderItem={({item}) => (
+            <TouchableOpacity style={styles.container} onPress={() => navigate('PostView')}>
+              <PostPreview />
+            </TouchableOpacity>
+          )}
+        />
+      </View>
+    );
+  }
+}
+
+
+var styles = StyleSheet.create({
+  list: {
+    backgroundColor: 'lightblue'
+  },
+  container: {
+    borderRadius: 4,
+    borderWidth: 1.5,
+    borderColor: 'black',
+  },
+});

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, AppRegistry, ScrollView} from 'react-native';
-import { DrawerNavigator, StackNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 
 import Settings from './src/settings/Settings.js';
 import AdminSettings from './src/settings/AdminSettings.js';
@@ -12,10 +12,9 @@ import PostPreview from './src/PostPreview.js';
 import PostView from './src/PostView.js';
 import SignIn from './src/SignIn.js';
 import HomeScreen from './HomeScreen.js';
-import stackNav from './stacknav.js';
 
 
-const AwesomeProject = StackNavigator({
+const stackNav = StackNavigator({
   Home: { screen: HomeScreen },
   Settings: { screen: Settings },
   AdminSettings: { screen: AdminSettings },
@@ -26,4 +25,4 @@ const AwesomeProject = StackNavigator({
 });
 
 
-AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
+export default stackNav;
