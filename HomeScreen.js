@@ -19,8 +19,8 @@ export default class HomeScreen extends React.Component {
       <View style={styles.app}>
         <Text>Hello, Navigation App!</Text>
 
-        <Button onPress={() => navigate('CreatePosts')} title="Create Post" />
         <PostList navigation={this.props.navigation}/>
+
       </View>
     );
   }

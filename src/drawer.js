@@ -1,5 +1,5 @@
 import { DrawerNavigator } from 'react-navigation';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, View, Switch } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import React from 'react';
 import { getNavigationOptionsWithAction, getDrawerNavigationOptions, getDrawerConfig } from './utils/navigation.js';
@@ -31,6 +31,7 @@ const getDrawerItem = navigation => (
         navigation.navigate('CreatePosts')
       }}
     />}
+    <Switch style={styles.slider}/>
   </View>
 );
 // icon generator function
@@ -48,8 +49,8 @@ const signinNavOptions = getDrawerNavigationOptions('Sign In', 'rgba(0, 124, 220
 // instantiate drawer
 const Drawer = DrawerNavigator({
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
-  Settings: { screen: Settings, navigationOptions: settingsNavOptions },
   SignIn : { screen: SignIn, navigationOptions: signinNavOptions },
+  Settings: { screen: Settings, navigationOptions: settingsNavOptions },
 }, getDrawerConfig(300, 'left', 'HomeScreen'));
 
 Drawer.navigationOptions = ({ navigation }) => getNavigationOptionsWithAction('AwesomeProject', 'rgba(0, 124, 220, 100)', 'white', getDrawerItem(navigation));
@@ -60,5 +61,11 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'row',
+  },
+  slider: {
+    flex: 1,
+    alignItems: 'stretch',
+    position: 'absolute',
+    right: -150
   },
 });
