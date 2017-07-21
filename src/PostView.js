@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default class PostView extends Component {
   constructor(props) {
@@ -13,13 +13,27 @@ export default class PostView extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>PostView!!!</Text>
-
-        <Text style={{height: 40, borderWidth: 1, borderRadius: 5}} placeholder="Title">Title </Text>
-
-        <Text style={{height: 100, borderWidth: 1, borderRadius: 5}} placeholder="Title">Message </Text>
+        <Text style={styles.title} placeholder="Title">Title </Text>
+        <Text style={styles.message} placeholder="Title">Message </Text>
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 20,
+  },
+  title: {
+    height: 40,
+    borderRadius: 5,
+    borderWidth: 1,
+  },
+  message: {
+    height: 100,
+    borderRadius: 5,
+    borderWidth: 1,
+  },
+});

@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import Drawer from './src/drawer.js'
 
 import PostPreview from './src/PostPreview.js';
 import PostList from './src/PostList.js';
@@ -17,6 +18,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.app}>
         <Text>Hello, Navigation App!</Text>
+        <Button onPress={() => navigate('Drawer')} title="Drawer" />
         <Button onPress={() => navigate('SignIn')} title="Sign In" />
         <Button onPress={() => navigate('CreatePosts')} title="Create Post" />
         <Button onPress={() => navigate('Settings')} title="View Settings" />
@@ -26,11 +28,11 @@ export default class HomeScreen extends React.Component {
   }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   app: {
     backgroundColor: 'white',
     borderRadius: 4,
     borderWidth: 3.5,
-    borderColor: 'blue',
+    borderColor: 'white',
   },
 });

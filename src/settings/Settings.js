@@ -14,16 +14,8 @@ export default class Settings extends React.Component {
     return (
       <ScrollView>
         <Text>Settings!!!</Text>
-        <Button
-          title="View User Settings"
-          color="#000000"
-          onPress={() => navigate('UserSettings')} />
-          <Button
-            title="View Admin Settings"
-            color="#000000"
-            onPress={() => navigate('AdminSettings')} />
-        <UserSettings />
-        <AdminSettings />
+        <Button title="View User Settings" color="#000000" onPress={() => navigate('UserSettings')} />
+        <Button title="View Admin Settings" color="#000000" onPress={() => navigate('AdminSettings')} />
       </ScrollView>
     );
   }

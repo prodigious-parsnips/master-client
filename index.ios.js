@@ -11,11 +11,12 @@ import PostList from './src/PostList.js';
 import PostPreview from './src/PostPreview.js';
 import PostView from './src/PostView.js';
 import SignIn from './src/SignIn.js';
+import Drawer from './src/drawer.js';
 import HomeScreen from './HomeScreen.js';
-import stackNav from './stacknav.js';
 
 
 const AwesomeProject = StackNavigator({
+  Drawer: { screen: Drawer },
   Home: { screen: HomeScreen },
   Settings: { screen: Settings },
   AdminSettings: { screen: AdminSettings },

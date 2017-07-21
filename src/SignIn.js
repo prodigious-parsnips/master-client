@@ -8,18 +8,21 @@ export default SignIn = () => (
   <View>
     <Text>Sign In!!!</Text>
     <View style={styles.row}>
-      <SocialIcon title='Sign In With Facebook' button type='facebook' />
+      <SocialIcon title='Sign In With Facebook' button type='facebook' onPress={() => console.log('hello')}/>
       <SocialIcon title='Sign In With Github' button type='github' />
       <SocialIcon title='Sign In With Twitter' button type='twitter' />
-      <SocialIcon title='Sign In With Youtube' button type='youtube' />
+      <SocialIcon style={styles.google} title='Sign In With Google' button type='google' />
     </View>
 
   </View>
 );
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'column',
+  },
+  google: {
+    backgroundColor: 'red',
   },
 });

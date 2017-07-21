@@ -11,7 +11,7 @@ export default PostPreview = () => (
   </View>
 );
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'row',
