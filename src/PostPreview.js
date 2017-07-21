@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    backgroundColor: 'rgba(0, 124, 220, 100)',
   },
   image: {
     height: 100,
