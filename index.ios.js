@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, AppRegistry, ScrollView} from 'react-native';
-import { DrawerNavigator, StackNavigator } from 'react-navigation';
+import { StackNavigator } from 'react-navigation';
 
 import Settings from './src/settings/Settings.js';
 import AdminSettings from './src/settings/AdminSettings.js';
@@ -11,7 +11,7 @@ import PostList from './src/PostList.js';
 import PostPreview from './src/PostPreview.js';
 import PostView from './src/PostView.js';
 import SignIn from './src/SignIn.js';
-import Drawer from './src/drawer.js';
+import Drawer from './src/Drawer.js';
 import HomeScreen from './HomeScreen.js';
 
 

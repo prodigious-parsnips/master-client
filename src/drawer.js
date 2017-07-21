@@ -22,14 +22,13 @@ const getDrawerItem = navigation => (
     }}
   />
 );
-// icon maker
+// FontAwesome icon generator function
 const getDrawerIcon = (iconName, tintColor) => <Icon name={iconName} size={20} color={tintColor} />;
 // icons:
 const homeDrawerIcon = ({ tintColor }) => getDrawerIcon('home', tintColor);
-const settingsDrawerIcon = ({ tintColor }) => getDrawerIcon('setting', tintColor);
+const settingsDrawerIcon = ({ tintColor }) => getDrawerIcon('cog', tintColor);
 
-
-
+// icon settings:
 const homeNavOptions = getDrawerNavigationOptions('Home', 'rgba(0, 124, 220, 100)', 'white', homeDrawerIcon);
 const settingsNavOptions = getDrawerNavigationOptions('Settings', 'rgba(0, 124, 220, 100)', 'white', settingsDrawerIcon);
 

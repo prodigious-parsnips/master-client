@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   message: {
+    marginTop: 2,
     height: 100,
     borderRadius: 5,
     borderWidth: 1,
