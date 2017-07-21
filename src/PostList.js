@@ -26,7 +26,7 @@ export default class PostList extends React.Component {
 
 const styles = StyleSheet.create({
   list: {
-    backgroundColor: 'rgba(0, 124, 220, 100)'
+    backgroundColor: 'white'
   },
   container: {
     borderRadius: 4,
