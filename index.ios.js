@@ -18,7 +18,7 @@ class AwesomeProject extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      userData: {}
+      userData: {},
     };
 
 
@@ -30,13 +30,11 @@ class AwesomeProject extends React.Component{
     .then(response => response.json())
     .then(data => {
       this.setState({userData: data});
-      console.log(data);
     })
     .catch(err => console.log(err));
   }
 
   render() {
-    // console.log(this.state.userData)
     return <Stack screenProps={this.state.userData}/>
   }
 }
@@ -51,6 +49,5 @@ const Stack = StackNavigator({
   SignIn: { screen: SignIn },
   CreatePosts: { screen: CreatePosts },
 });
-
 
 AppRegistry.registerComponent('AwesomeProject', () => AwesomeProject);
