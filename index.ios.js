@@ -5,13 +5,13 @@ import { StackNavigator } from 'react-navigation';
 import Settings from './src/settings/Settings.js';
 import AdminSettings from './src/settings/AdminSettings.js';
 import UserSettings from './src/settings/UserSettings.js';
-import ModalBar from './src/ModalBar.js';
+
 import CreatePosts from './src/CreatePosts.js';
 import PostList from './src/PostList.js';
 import PostPreview from './src/PostPreview.js';
 import PostView from './src/PostView.js';
 import SignIn from './src/SignIn.js';
-import Drawer from './src/Drawer.js';
+import Drawer from './src/DrawerNav.js';
 import HomeScreen from './HomeScreen.js';
 
 class AwesomeProject extends React.Component{
