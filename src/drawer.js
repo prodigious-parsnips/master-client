@@ -9,6 +9,7 @@ import Settings from './settings/Settings.js';
 import SignIn from './SignIn.js';
 import CreatePosts from './CreatePosts.js';
 
+const FAKE_USER_ID = 2;
 
 const getDrawerItem = navigation => (
   <View style={styles.row}>
@@ -34,6 +35,8 @@ const getDrawerItem = navigation => (
     <Switch style={styles.slider}/>
   </View>
 );
+
+
 // icon generator function
 const getDrawerIcon = (iconName, tintColor) => <Icon name={iconName} size={20} color={tintColor} />;
 // drawer icons:
