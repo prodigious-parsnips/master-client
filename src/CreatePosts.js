@@ -33,6 +33,7 @@ export default class CreatePosts extends Component {
       text: this.state.text,
       geotag: '454x, 565y',
       subid: this.props.screenProps.subreddits[0].id
+
       }
 
     fetch("http://localhost:3000/api/messages", {
@@ -48,8 +49,9 @@ export default class CreatePosts extends Component {
 
     }).catch((err) => {
       console.log('GOT AN ERROR', err);
-    }
+    })
   }
+  
 
 
 
