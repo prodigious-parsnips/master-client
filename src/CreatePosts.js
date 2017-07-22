@@ -8,7 +8,16 @@ export default class CreatePosts extends Component {
   constructor(props) {
     super(props);
     this.state = {text: ''};
+  this.postInputHandler = this.postInputHandler.bind(this);
   }
+
+   postInputHander = (ev) => {
+    this.setState({
+      text: ev.target.value
+    })
+  }
+
+
 
   static navigationOptions = {
     title: 'Create Post',
