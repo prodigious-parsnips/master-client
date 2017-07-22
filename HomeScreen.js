@@ -9,6 +9,9 @@ import PostList from './src/PostList.js';
 // PASSING NAVIGATION AS PROPS: https://stackoverflow.com/a/44029481
 
 export default class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   static navigationOptions = {
     title: 'Home',
   };
@@ -17,10 +20,7 @@ export default class HomeScreen extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.app}>
-        <Text>Hello, Navigation App!</Text>
-
         <PostList navigation={this.props.navigation}/>
-
       </View>
     );
   }

@@ -14,8 +14,34 @@ import SignIn from './src/SignIn.js';
 import Drawer from './src/Drawer.js';
 import HomeScreen from './HomeScreen.js';
 
+class AwesomeProject extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      userData: {}
+    };
 
-const AwesomeProject = StackNavigator({
+
+
+  }
+
+  componentDidMount() {
+    fetch(`http://localhost:3000/api/user?id=3`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({userData: data});
+      console.log(data);
+    })
+    .catch(err => console.log(err));
+  }
+
+  render() {
+    // console.log(this.state.userData)
+    return <Stack screenProps={this.state.userData}/>
+  }
+}
+
+const Stack = StackNavigator({
   Drawer: { screen: Drawer },
   Home: { screen: HomeScreen },
   Settings: { screen: Settings },
