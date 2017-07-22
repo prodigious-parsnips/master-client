@@ -1,19 +1,54 @@
 import React, { Component } from 'react';
 import { Dimensions, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Button } from 'react-native-elements'
+import { StackNavigator } from 'react-navigation';
 
 const { height, width } = Dimensions.get('window');
 
 export default class CreatePosts extends Component {
   constructor(props) {
     super(props);
-    this.state = {text: ''};
-  this.postInputHandler = this.postInputHandler.bind(this);
+    this.state = {
+      text: '', 
+      title: ''
+    };
+
+
+    this.sendTextInput = this.sendTextInput.bind(this);
   }
 
-   postInputHander = (ev) => {
-    this.setState({
-      text: ev.target.value
+  componentDidMount() {
+    console.log("state", this.props);
+  }
+
+
+  sendTextInput () {
+
+     const { navigate } = this.props.navigation;
+
+     var form = {
+      subredditId: this.props.screenProps.subreddits[0].id,
+      postId: '10',
+      userId: '10',
+      title: this.state.title,
+      text: this.state.text,
+      geotag: '454x, 565y',
+      subid: '10'
+      }
+
+    fetch("http://localhost:3000/api/messages", {
+      method: "POST",
+       headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+      body: JSON.stringify(form)
+    }).then((data) => {
+      console.log('completed, navigate now');
+      navigate('HomeScreen')
+
+    }).catch((err) => {
+      console.log('GOT AN ERROR', err);
     })
   }
 
@@ -26,12 +61,9 @@ export default class CreatePosts extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput style={styles.title} placeholder="Title" onChangeText={(text) => this.setState({text})} />
-        <TextInput style={styles.message} placeholder="Message" />
-        <Button raised iconRight icon={{name: 'check'}} title='Submit Post' buttonStyle={styles.button} />
-        <Text style={{padding: 10, fontSize: 42}}>
-          {this.state.text.split(' ').map((word) => word && '🖕').join(' ')}
-        </Text>
+        <TextInput style={styles.title} placeholder="Title" onChangeText={(title) => this.setState({title}, () => {console.log('state changed', this.state.title)})} />
+        <TextInput style={styles.message} placeholder="Message" onChangeText={(text) => this.setState({text}, () => {console.log('state changed', this.state.text)})} />
+        <Button raised iconRight icon={{name: 'check'}} title='Submit Post' buttonStyle={styles.button} onPress={this.sendTextInput} />
       </View>
     );
   }
