@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import Drawer from './src/Drawer.js'
+import Drawer from './src/DrawerNav.js'
 
 import PostPreview from './src/PostPreview.js';
 import PostList from './src/PostList.js';

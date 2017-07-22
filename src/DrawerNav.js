@@ -33,7 +33,7 @@ const getDrawerItem = navigation => (
         navigation.navigate('CreatePosts')
       }}
     />}
-    <Switch style={styles.slider}/>
+    {navigation.state.index === 0 && <Switch style={styles.slider}/>}
   </View>
 );
 
@@ -73,6 +73,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     position: 'absolute',
-    right: -150
+    right: -250
   },
 });
