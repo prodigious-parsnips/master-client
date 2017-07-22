@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
-export default PostPreview = () => (
+export default PostPreview = (props) => (
   <View>
     <View style={styles.row}>
       <Image source={{uri: 'https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb'}}
       style={styles.image} />
-      <Text style={styles.title}> Look at this cat!!! XD</Text>
+    <Text style={styles.title}>{props.title}</Text>
     </View>
   </View>
 );

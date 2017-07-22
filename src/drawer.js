@@ -8,6 +8,7 @@ import HomeScreen from '../HomeScreen.js';
 import Settings from './settings/Settings.js';
 import SignIn from './SignIn.js';
 import CreatePosts from './CreatePosts.js';
+import { drawerObject } from '../index.ios.js';
 
 const FAKE_USER_ID = 2;
 
@@ -36,6 +37,9 @@ const getDrawerItem = navigation => (
   </View>
 );
 
+const getSubs = (userId) => {
+
+}
 
 // icon generator function
 const getDrawerIcon = (iconName, tintColor) => <Icon name={iconName} size={20} color={tintColor} />;
