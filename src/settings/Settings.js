@@ -63,7 +63,7 @@ export default class Settings extends React.Component {
 const styles = StyleSheet.create({
   header: {
     flex: 1,
-    padding: 10,
+    padding: 5,
   },
   title: {
     backgroundColor: 'white',
