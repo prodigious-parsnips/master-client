@@ -3,7 +3,7 @@ import { Text, View, Slider } from 'react-native';
 
 export default UserSettings = () => (
   <View>
-    <Text>UserSettings!!!</Text>
+    <Text>UserSettings Component</Text>
     <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
       <Text>Upvote Threshold</Text>
       <Slider style={{width:200}}/>

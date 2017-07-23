@@ -8,7 +8,7 @@ class NavBarItem extends Component {
     const { iconName, onPress } = this.props;
     return (
       <TouchableOpacity
-        style={{ paddingHorizontal: 20 }}
+        style={{ paddingHorizontal: 20, paddingVertical: 10, }}
         onPress={() => onPress()}
       >
         <Icon name={iconName} size={20} color="#fff" />

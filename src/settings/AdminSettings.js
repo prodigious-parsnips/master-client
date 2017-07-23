@@ -3,7 +3,7 @@ import { Text, View, Slider, TextInput } from 'react-native';
 
 export default AdminSettings = () => (
   <View>
-    <Text>AdminSettings!!!</Text>
+    <Text>AdminSettings Component</Text>
     <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
       <Text>Title:</Text>
       <TextInput

@@ -40,8 +40,7 @@ class AwesomeProject extends React.Component{
 }
 
 const Stack = StackNavigator({
-  Drawer: { screen: Drawer },
-  Home: { screen: HomeScreen },
+  Home: { screen: Drawer },
   Settings: { screen: Settings },
   AdminSettings: { screen: AdminSettings },
   UserSettings: { screen: UserSettings },
