@@ -15,7 +15,6 @@ export default class PostView extends Component {
     const params = this.props.navigation.state.params
     return (
       <View style={styles.container}>
-        <Text>PostView!!!</Text>
         <Text style={styles.title} placeholder="Title">{params.title} </Text>
         <Text style={styles.message} placeholder="Title">{params.text}</Text>
       </View>

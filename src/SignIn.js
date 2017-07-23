@@ -6,7 +6,6 @@ import { SocialIcon } from 'react-native-elements'
 
 export default SignIn = () => (
   <View>
-    <Text>Sign In!!!</Text>
     <View style={styles.row}>
       <TextInput style={styles.login} placeholder="Login" />
       <TextInput style={styles.pass} placeholder="Password" />

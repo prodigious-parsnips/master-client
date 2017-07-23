@@ -22,7 +22,6 @@ class AwesomeProject extends React.Component{
     };
 
 
-
   }
 
   componentDidMount() {
@@ -30,6 +29,7 @@ class AwesomeProject extends React.Component{
     .then(response => response.json())
     .then(data => {
       this.setState({userData: data});
+      console.log(JSON.stringify(data, null, 2))
     })
     .catch(err => console.log(err));
   }
