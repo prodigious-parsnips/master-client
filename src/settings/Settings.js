@@ -66,8 +66,10 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   title: {
-    backgroundColor: 'rgba(0, 124, 220, 100)',
-    borderColor: 'red',
-    borderStyle: 'solid'
+    backgroundColor: 'white',
+    borderColor: 'rgba(0, 124, 220, 100)',
+    borderStyle: 'solid',
+    borderWidth: 1.5,
+    textAlign: 'center',
   },
 });
