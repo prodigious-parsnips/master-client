@@ -17,7 +17,7 @@ export default class CreatePosts extends Component {
   }
 
   componentDidMount() {
-    console.log("state", this.props);
+    console.log("state", this.props.messages);
   }
 
 
@@ -32,8 +32,7 @@ export default class CreatePosts extends Component {
       title: this.state.title,
       text: this.state.text,
       geotag: '454x, 565y',
-      subid: this.props.screenProps.subreddits[0].id
-
+      subId: this.props.screenProps.subreddits[0].id
       }
 
     fetch("http://localhost:3000/api/messages", {
