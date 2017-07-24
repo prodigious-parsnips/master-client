@@ -9,7 +9,7 @@ export default class CreatePosts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '', 
+      text: '',
       title: ''
     };
 
@@ -27,7 +27,7 @@ export default class CreatePosts extends Component {
      const { navigate } = this.props.navigation;
 
      var form = {
-      subredditId: this.props.screenProps.subreddits[0].id,
+      subredditId: 10,
       postId: '10',
       userId: '10',
       title: this.state.title,

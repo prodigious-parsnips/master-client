@@ -26,7 +26,7 @@ export default class HomeScreen extends React.Component {
     for (var i = 0; i < subs ? subs.length : 0; i++) {
       if (subs.title === this.props.navigation.state.key) return subs.id;
     }
-    return 3; // this is an arbitrary working path should eventually point to local/default sub
+    return 10; // this is an arbitrary working path should eventually point to local/default sub
   }
 
   static navigationOptions = {
@@ -38,7 +38,7 @@ export default class HomeScreen extends React.Component {
     .then(response => response.json())
     .then(data => {
       this.setState({messages: data});
-      
+
     })
     .catch(err => console.log(err));
   }

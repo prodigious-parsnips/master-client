@@ -11,7 +11,7 @@ export default class PostList extends React.Component {
     return (
       <View>
         <FlatList style={styles.list}
-          data={[this.props.messages]}
+          data={this.props.messages}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
             <TouchableOpacity style={styles.container} onPress={() => navigate('PostView', {title: item.title, text: item.text})}>
