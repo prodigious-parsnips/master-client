@@ -16,11 +16,12 @@ export default class AdminSettings extends React.Component {
     return (
       <ScrollView>
         <Text>AdminSettings Component</Text>
-        <View style={styles.component}>
+        <View style={styles.container}>
           <Text>Title:</Text>
           <TextInput style={styles.title} placeholder="Title" />
           <Text>Description:</Text>
           <TextInput style={styles.description} placeholder="Description" />
+
           <Text>Upvote Threshold: {this.state.upvoteThreshold}</Text>
           <Slider style={{width:200}} maximumValue={10} step={1}
             value={this.state.upvoteThreshold}
@@ -38,7 +39,7 @@ export default class AdminSettings extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  component: {
+  container: {
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
