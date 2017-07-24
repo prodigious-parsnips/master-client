@@ -13,18 +13,15 @@ export default class HomeScreen extends React.Component {
     super(props);
     this.state = {
       messages: [],
-      currentSub: this.getSubId()
+      currentSub: 10
     };
-    // console.log('\n' + props.navigation.state.key + '\n');
-    console.log('\n' + JSON.stringify(props, null, 2) + '\n');
   }
 
   getSubId() {
     var subTitle = this.props.navigation.state.key;
     var subs = this.props.screenProps.subreddits;
-    // console.log('\n' + subs + '\n');
-    for (var i = 0; i < subs ? subs.length : 0; i++) {
-      if (subs.title === this.props.navigation.state.key) return subs.id;
+    for (var i = 0; i < subs.length; i++) {
+      if (subs[i].title === subTitle) return subs[i].id;
     }
     return 10; // this is an arbitrary working path should eventually point to local/default sub
   }
@@ -33,7 +30,17 @@ export default class HomeScreen extends React.Component {
     title: 'Home'
   };
 
+  componentDidUpdate(pProps, pState) {
+    if (this.getSubId() !== pState.currentSub) {
+      this.setState({currentSub: this.getSubId()}, this.fetchMessages);
+    }
+  }
+
   componentDidMount() {
+    this.fetchMessages();
+  }
+
+  fetchMessages() {
     fetch(`http://localhost:3000/api/messages?subredditId=${this.state.currentSub}`)
     .then(response => response.json())
     .then(data => {
@@ -44,7 +51,7 @@ export default class HomeScreen extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log(this.props)
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.app}>
