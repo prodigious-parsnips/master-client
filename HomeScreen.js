@@ -5,7 +5,7 @@ import Drawer from './src/DrawerNav.js'
 
 import PostPreview from './src/PostPreview.js';
 import PostList from './src/PostList.js';
-var FAKE_SUBREDDIT_ID = 10;
+var FAKE_SUBREDDIT_ID = 3;
 // PASSING NAVIGATION AS PROPS: https://stackoverflow.com/a/44029481
 
 export default class HomeScreen extends React.Component {
@@ -24,7 +24,7 @@ export default class HomeScreen extends React.Component {
     .then(response => response.json())
     .then(data => {
       this.setState({messages: data});
-      console.log('data from initial component mount', this.state.messages);
+      console.log(data);
     })
     .catch(err => console.log(err));
   }
