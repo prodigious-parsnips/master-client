@@ -19,11 +19,67 @@ class AwesomeProject extends React.Component{
     super(props);
     this.state = {
       userData: {},
+      auth: {
+        signUp: {
+          username: '',
+          password: ''
+        },
+        signIn: {
+          username: '',
+          password: ''
+        }
+      }
     };
-
-
-
   }
+
+  handleSignUpActions(type, text) {
+    if(type === 'username') {
+      this.setState((state)=>{
+        let newAuth = state.auth;
+        newAuth.signUp.username = text;
+        return {auth: newAuth}
+      })
+    }
+    if(type === 'password') {
+      this.setState((state)=>{
+        let newAuth = state.auth;
+        newAuth.signUp.password = text;
+        return {auth: newAuth}
+      })
+    }
+    if(type === 'submit') {
+      handleSignUpClick();
+    }
+  };
+
+  handleSignUpClick(){
+    console.log('handle sign up click is beign called!')
+  }
+
+  handleSignInActions(type, text) {
+    if(type === 'username') {
+      this.setState((state)=>{
+        let newAuth = state.auth;
+        newAuth.signIn.username = text;
+        return {auth: newAuth}
+      })
+    }
+    if(type === 'password') {
+      this.setState((state)=>{
+        let newAuth = state.auth;
+        newAuth.signIn.password = text;
+        return {auth: newAuth}
+      })
+    }
+    if(type === 'submit') {
+      handleSignInClick();
+    }
+  };
+
+  handleSignInClick(){
+    console.log('handle sign in click is beign called!')
+  }
+
 
   componentDidMount() {
     fetch(`http://localhost:3000/api/user?id=3`)
@@ -35,7 +91,11 @@ class AwesomeProject extends React.Component{
   }
 
   render() {
-    return <Stack screenProps={this.state.userData}/>
+    return <Stack screenProps={{
+      userdata: this.state.userData, 
+      handleSignUpActions: this.handleSignUpActions.bind(this),
+      handleSignInActions: this.handleSignInActions.bind(this)
+    }}/>
   }
 }
 
