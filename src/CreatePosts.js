@@ -13,12 +13,11 @@ export default class CreatePosts extends Component {
       title: ''
     };
 
-
     this.sendTextInput = this.sendTextInput.bind(this);
   }
 
   componentDidMount() {
-    console.log("state", this.props);
+    console.log("state", this.props.messages);
   }
 
 
@@ -28,12 +27,12 @@ export default class CreatePosts extends Component {
 
      var form = {
       subredditId: this.props.screenProps.subreddits[0].id,
-      postId: '10',
-      userId: '10',
+      postId: null,
+      userId: this.props.screenProps.subreddits[0].id,
       title: this.state.title,
       text: this.state.text,
       geotag: '454x, 565y',
-      subid: '10'
+      subId: this.props.screenProps.subreddits[0].id
       }
 
     fetch("http://localhost:3000/api/messages", {
@@ -51,6 +50,7 @@ export default class CreatePosts extends Component {
       console.log('GOT AN ERROR', err);
     })
   }
+  
 
 
 
