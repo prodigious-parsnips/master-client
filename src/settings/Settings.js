@@ -23,7 +23,7 @@ export default class Settings extends React.Component {
   renderAdminSettings(section) {
     return (
       <View>
-      <AdminSettings />
+        <AdminSettings />
       </View>
     );
   }
