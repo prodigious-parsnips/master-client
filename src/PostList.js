@@ -6,15 +6,19 @@ import PostPreview from './PostPreview.js'
 
 export default class PostList extends React.Component {
 
+  componentDidMount() {
+    console.log('where is the title?', this.props.messages)
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View>
         <Text>PostList!!!</Text>
         <FlatList style={styles.list}
-          data={[this.props.messages]}
+          data={this.props.messages}
           renderItem={({item}) => (
-            <TouchableOpacity style={styles.container} onPress={() => navigate('PostView', {title: this.props.messages.title, text: this.props.messages.text})}>
+            <TouchableOpacity style={styles.container} onPress={() => navigate('PostView', {title: item.title, text: item.text})}>
               <PostPreview title={item.title}/>
             </TouchableOpacity>
           )}

@@ -121,7 +121,7 @@ class AwesomeProject extends React.Component{
 
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/user?id=3`)
+    fetch(`http://localhost:3000/api/user?id=10`)
     .then(response => response.json())
     .then(data => {
       this.setState({userData: data});
