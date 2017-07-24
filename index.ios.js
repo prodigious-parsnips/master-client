@@ -18,6 +18,7 @@ class AwesomeProject extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
+      userId: null,
       userData: {},
       auth: {
         signUp: {
@@ -48,12 +49,30 @@ class AwesomeProject extends React.Component{
       })
     }
     if(type === 'submit') {
-      handleSignUpClick();
+      this.handleSignUpClick();
     }
   };
 
   handleSignUpClick(){
-    console.log('handle sign up click is beign called!')
+    fetch('http://localhost:3000/signup', {
+      method: 'POST', 
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: this.state.auth.signUp.username,
+        password: this.state.auth.signUp.password
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.id)
+      this.setState({userId: data.id}, ()=>{console.log('this is the state after set ', this.state)})
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 
   handleSignInActions(type, text) {
@@ -72,7 +91,7 @@ class AwesomeProject extends React.Component{
       })
     }
     if(type === 'submit') {
-      handleSignInClick();
+      this.handleSignInClick();
     }
   };
 
