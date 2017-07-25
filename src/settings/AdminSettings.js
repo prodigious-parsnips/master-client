@@ -10,6 +10,17 @@ export default class AdminSettings extends React.Component {
       upvoteThreshold: 0,
       distanceThreshold: 0,
     };
+
+    this.updateUpvoteThreshold = this.updateUpvoteThreshold.bind(this);
+    this.updateDistanceThreshold = this.updateDistanceThreshold.bind(this);
+  }
+
+  updateUpvoteThreshold() {
+
+  }
+
+  updateDistanceThreshold() {
+    
   }
 
   render() {
@@ -25,12 +36,16 @@ export default class AdminSettings extends React.Component {
           <Text>Upvote Threshold: {this.state.upvoteThreshold}</Text>
           <Slider style={{width:200}} maximumValue={10} step={1}
             value={this.state.upvoteThreshold}
-            onValueChange={(upvoteThreshold) => this.setState({upvoteThreshold})} />
+            onValueChange={(upvoteThreshold) => this.setState({upvoteThreshold})}
+            onSlidingComplete={this.updateUpvoteThreshold}
+          />
 
           <Text>Distance Threshold: {this.state.distanceThreshold}</Text>
           <Slider style={{width:200}} maximumValue={10} step={1}
             value={this.state.distanceThreshold}
-            onValueChange={(distanceThreshold) => this.setState({distanceThreshold})} />
+            onValueChange={(distanceThreshold) => this.setState({distanceThreshold})}
+            onSlidingComplete={this.updateDistanceThreshold}
+          />
 
         </View>
       </ScrollView>
