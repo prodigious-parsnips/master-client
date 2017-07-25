@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'column',
+    padding: 20,
   },
   login: {
     height: 40,
