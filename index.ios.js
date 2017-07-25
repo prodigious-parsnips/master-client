@@ -14,12 +14,13 @@ import SignIn from './src/SignIn.js';
 import Drawer from './src/DrawerNav.js';
 import HomeScreen from './HomeScreen.js';
 
-class AwesomeProject extends React.Component{
+class AwesomeProject extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       userId: null,
       userData: {},
+      messages: [],
       auth: {
         signUp: {
           username: '',
@@ -117,26 +118,43 @@ class AwesomeProject extends React.Component{
     .catch(err => {
       console.log(err);
     })
-  }
 
+  };
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/user?id=10`)
+    console.log('index ios component did mount')
+    fetch(`http://localhost:3000/api/user?id=13`)
     .then(response => response.json())
     .then(data => {
       this.setState({userData: data});
+
     })
     .catch(err => console.log(err));
+    this.fetchMessages();
   }
 
+  fetchMessages() {
+    console.log('homescreen component did mount');
+    fetch(`http://localhost:3000/api/messages?subredditId=13`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({messages: data});
+      console.log('data from fetch messages', this.state.messages);
+    })
+    .catch(err => console.log(err));    
+  }  
+
   render() {
-    return <Stack screenProps={{
-      userdata: this.state.userData, 
+    return <Stack screenProps={{ 
       handleSignUpActions: this.handleSignUpActions.bind(this),
-      handleSignInActions: this.handleSignInActions.bind(this)
+      handleSignInActions: this.handleSignInActions.bind(this),
+      userData:this.state.userData, 
+      fetchMessages: this.fetchMessages.bind(this),
+      messages:this.state.messages      
     }}/>
   }
 }
+
 
 const Stack = StackNavigator({
   Home: { screen: Drawer },

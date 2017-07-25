@@ -5,9 +5,16 @@ import { StackNavigator } from 'react-navigation';
 import PostPreview from './PostPreview.js'
 
 export default class PostList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dummy: [{one:'one', two: 'two'}]
+    }
+  }
 
   componentDidMount() {
-    console.log('where is the title?', this.props.messages)
+    console.log('messages from homeScreen in postList', this.props.messages);
+    console.log("fetchMessages function is defined in postList?", this.props.fetchMessages);
   }
 
   render() {

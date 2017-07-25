@@ -11,29 +11,23 @@ var FAKE_SUBREDDIT_ID = 10;
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      messages: []
-    };
   }
   static navigationOptions = {
     title: 'Home',
   };
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/messages?subredditId=${FAKE_SUBREDDIT_ID}`)
-    .then(response => response.json())
-    .then(data => {
-      this.setState({messages: data});
-      console.log('data from initial component mount', this.state.messages);
-    })
-    .catch(err => console.log(err));
+    console.log("messages from index.ios --> homescreen", this.props.screenProps.messages);
+
   }
+
+
 
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.app}>
-        <PostList navigation={this.props.navigation} messages={this.state.messages}/>
+        <PostList navigation={this.props.navigation} fetchMessages={this.props.screenProps.fetchMessages} messages={this.props.screenProps.messages}/>
       </View>
     );
   }
