@@ -15,7 +15,11 @@ export default SignIn = (props) => (
         onChangeText={(text)=>{props.screenProps.handleSignInActions('password', text)}}
       />
 
-      <Button raised iconRight icon={{name: 'person'}} title='Sign Into HereNow' buttonStyle={styles.button} onPress={()=>{props.screenProps.handleSignInActions('submit')}} />
+      <Button
+        raised iconRight icon={{name: 'person'}}
+        title='Sign Into HereNow' buttonStyle={styles.button}
+        onPress={()=>{props.screenProps.handleSignInActions('submit')}}
+      />
 
       <Text>Sign Up</Text>
       <TextInput style={styles.login} placeholder="Username"
@@ -25,8 +29,11 @@ export default SignIn = (props) => (
         onChangeText={(text)=>{props.screenProps.handleSignUpActions('password', text)}}
       />
 
-      <Button raised iconRight icon={{name: 'add'}} title='Sign Up For HereNow' buttonStyle={styles.button} onPress={()=>{props.screenProps.handleSignUpActions('submit')}} />
-
+      <Button
+        raised iconRight icon={{name: 'add'}}
+        title='Sign Up For HereNow' buttonStyle={styles.button}
+        onPress={()=>{props.screenProps.handleSignUpActions('submit')}}
+      />
     </View>
 
   </ScrollView>
@@ -36,7 +43,7 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'flex-start',
+    
   },
   login: {
     height: 40,
@@ -54,7 +61,3 @@ const styles = StyleSheet.create({
     backgroundColor:'rgba(0, 124, 220, 100)',
   },
 });
-
-  // <SocialIcon title='Sign In With Github' button type='github' />
-  // <SocialIcon title='Sign In With Twitter' button type='twitter' />
-  // <SocialIcon title='Sign In With Google' button type='google' style={styles.google} />
