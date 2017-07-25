@@ -7,7 +7,9 @@ export default class UserSettings extends React.Component {
     super(props);
 
     this.state = {
-
+      upvoteThreshold: 0,
+      distanceThreshold: 0,
+      notifThreshold: 0,
     };
   }
 
@@ -15,13 +17,21 @@ export default class UserSettings extends React.Component {
     return (
       <ScrollView>
         <Text>UserSettings Component</Text>
-        <View style={{flex: 1, flexDirection: 'column', alignItems: 'center'}}>
-          <Text>Upvote Threshold</Text>
-          <Slider style={{width:200}}/>
-          <Text>Distance Threshold</Text>
-          <Slider style={{width:200}}/>
-          <Text>Notification Limit (daily)</Text>
-          <Slider style={{width:200}}/>
+        <View style={styles.container}>
+          <Text>Upvote Threshold: {this.state.upvoteThreshold}</Text>
+          <Slider style={{width:200}} maximumValue={10} step={1}
+            value={this.state.upvoteThreshold}
+            onValueChange={(upvoteThreshold) => this.setState({upvoteThreshold})} />
+
+          <Text>Distance Threshold: {this.state.distanceThreshold}</Text>
+          <Slider style={{width:200}} maximumValue={10} step={1}
+            value={this.state.distanceThreshold}
+            onValueChange={(distanceThreshold) => this.setState({distanceThreshold})} />
+
+          <Text>Daily Notification Limit: {this.state.notifThreshold}</Text>
+          <Slider style={{width:200}} maximumValue={10} step={1}
+            value={this.state.notifThreshold}
+            onValueChange={(notifThreshold) => this.setState({notifThreshold})} />
         </View>
       </ScrollView>
     )
@@ -29,5 +39,9 @@ export default class UserSettings extends React.Component {
 }
 
 const styles = StyleSheet.create({
-
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
 })
