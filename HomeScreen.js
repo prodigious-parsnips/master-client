@@ -5,7 +5,6 @@ import Drawer from './src/DrawerNav.js'
 
 import PostPreview from './src/PostPreview.js';
 import PostList from './src/PostList.js';
-var FAKE_SUBREDDIT_ID = 10;
 // PASSING NAVIGATION AS PROPS: https://stackoverflow.com/a/44029481
 
 export default class HomeScreen extends React.Component {
@@ -15,13 +14,6 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Home',
   };
-
-  componentDidMount() {
-    console.log("messages from index.ios --> homescreen", this.props.screenProps.messages);
-
-  }
-
-
 
   render() {
     const { navigate } = this.props.navigation;

@@ -13,6 +13,7 @@ import PostView from './src/PostView.js';
 import SignIn from './src/SignIn.js';
 import Drawer from './src/DrawerNav.js';
 import HomeScreen from './HomeScreen.js';
+var FAKE_SUBREDDIT_ID = 13;
 
 class AwesomeProject extends React.Component {
   constructor(props) {
@@ -122,7 +123,6 @@ class AwesomeProject extends React.Component {
   };
 
   componentDidMount() {
-    console.log('index ios component did mount')
     fetch(`http://localhost:3000/api/user?id=13`)
     .then(response => response.json())
     .then(data => {
@@ -134,7 +134,7 @@ class AwesomeProject extends React.Component {
   }
 
   fetchMessages() {
-    console.log('homescreen component did mount');
+    console.log('is this happening after the post?');
     fetch(`http://localhost:3000/api/messages?subredditId=13`)
     .then(response => response.json())
     .then(data => {

@@ -16,24 +16,19 @@ export default class CreatePosts extends Component {
     this.sendTextInput = this.sendTextInput.bind(this);
   }
 
-  componentDidMount() {
-    console.log("state", this.props.messages);
-  }
-
-
   sendTextInput () {
 
      const { navigate } = this.props.navigation;
 
      var form = {
-      subredditId: this.props.screenProps.subreddits[0].id,
+      subredditId: this.props.screenProps.userData[0].subreddits[0].id,
       postId: null,
-      userId: this.props.screenProps.subreddits[0].id,
+      userId: this.props.screenProps.userData[0].id,
       title: this.state.title,
       text: this.state.text,
       geotag: '454x, 565y',
-      subId: this.props.screenProps.subreddits[0].id
-      }
+      subId: this.props.screenProps.userData[0].subreddits[0].id,     
+    }
 
     fetch("http://localhost:3000/api/messages", {
       method: "POST",
@@ -43,16 +38,13 @@ export default class CreatePosts extends Component {
     },
       body: JSON.stringify(form)
     }).then((data) => {
-      console.log('completed, navigate now');
+      this.props.screenProps.fetchMessages();
       navigate('HomeScreen')
 
     }).catch((err) => {
       console.log('GOT AN ERROR', err);
     })
   }
-  
-
-
 
   static navigationOptions = {
     title: 'Create Post',
