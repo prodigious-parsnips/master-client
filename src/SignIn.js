@@ -4,16 +4,31 @@ import { SocialIcon } from 'react-native-elements'
 
 // https://github.com/oblador/react-native-vector-icons#installation
 
-export default SignIn = () => (
+export default SignIn = (props) => (
   <View>
-    <Text>Sign In!!!</Text>
     <View style={styles.row}>
-      <TextInput style={styles.login} placeholder="Login" />
-      <TextInput style={styles.pass} placeholder="Password" />
-      <SocialIcon title='Sign In With Facebook' button type='facebook' onPress={() => console.log('hello')}/>
-      <SocialIcon title='Sign In With Github' button type='github' />
-      <SocialIcon title='Sign In With Twitter' button type='twitter' />
-      <SocialIcon title='Sign In With Google' button type='google' style={styles.google} />
+      <Text>Sign In</Text>
+      <TextInput style={styles.login} placeholder="Username" 
+        onChangeText={(text)=>{props.screenProps.handleSignInActions('username', text)}}
+      />
+      <TextInput style={styles.pass} placeholder="Password" 
+        onChangeText={(text)=>{props.screenProps.handleSignInActions('password', text)}}
+      />
+      <SocialIcon title='Sign Into HereNow' button type='facebook' 
+        onPress={()=>{props.screenProps.handleSignInActions('submit')}}
+      />
+
+      <Text>Sign Up</Text>
+      <TextInput style={styles.login} placeholder="Username" 
+        onChangeText={(text)=>{props.screenProps.handleSignUpActions('username', text)}}
+      />
+      <TextInput style={styles.pass} placeholder="Password" 
+        onChangeText={(text)=>{props.screenProps.handleSignUpActions('password', text)}}
+      />
+      <SocialIcon title='Sign Up For HereNow' button type='facebook' 
+        onPress={()=>{props.screenProps.handleSignUpActions('submit')}}
+      />
+
     </View>
 
   </View>
@@ -41,3 +56,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'red',
   },
 });
+
+  // <SocialIcon title='Sign In With Github' button type='github' />
+  // <SocialIcon title='Sign In With Twitter' button type='twitter' />
+  // <SocialIcon title='Sign In With Google' button type='google' style={styles.google} />
+
+
+

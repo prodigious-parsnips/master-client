@@ -18,12 +18,107 @@ class AwesomeProject extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
+      userId: null,
       userData: {},
+      auth: {
+        signUp: {
+          username: '',
+          password: ''
+        },
+        signIn: {
+          username: '',
+          password: ''
+        }
+      }
     };
-
-
-
   }
+
+  handleSignUpActions(type, text) {
+    if(type === 'username') {
+      this.setState((state)=>{
+        let newAuth = state.auth;
+        newAuth.signUp.username = text;
+        return {auth: newAuth}
+      })
+    }
+    if(type === 'password') {
+      this.setState((state)=>{
+        let newAuth = state.auth;
+        newAuth.signUp.password = text;
+        return {auth: newAuth}
+      })
+    }
+    if(type === 'submit') {
+      this.handleSignUpClick();
+    }
+  };
+
+  handleSignUpClick(){
+    fetch('http://localhost:3000/signup', {
+      method: 'POST', 
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: this.state.auth.signUp.username,
+        password: this.state.auth.signUp.password
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      this.setState({userId: data.id}, ()=>{console.log('this is the state after set ', this.state)})
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  handleSignInActions(type, text) {
+    if(type === 'username') {
+      this.setState((state)=>{
+        let newAuth = state.auth;
+        newAuth.signIn.username = text;
+        return {auth: newAuth}
+      })
+    }
+    if(type === 'password') {
+      this.setState((state)=>{
+        let newAuth = state.auth;
+        newAuth.signIn.password = text;
+        return {auth: newAuth}
+      })
+    }
+    if(type === 'submit') {
+      this.handleSignInClick();
+    }
+  };
+
+  handleSignInClick(){
+    fetch('http://localhost:3000/login', {
+      method: 'POST', 
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: this.state.auth.signIn.username,
+        password: this.state.auth.signIn.password
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if(data.fail){
+        this.setState({userId: 'fail'})
+      } else {
+        this.setState({userId: data.id})
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
 
   componentDidMount() {
     fetch(`http://localhost:3000/api/user?id=3`)
@@ -35,7 +130,11 @@ class AwesomeProject extends React.Component{
   }
 
   render() {
-    return <Stack screenProps={this.state.userData}/>
+    return <Stack screenProps={{
+      userdata: this.state.userData, 
+      handleSignUpActions: this.handleSignUpActions.bind(this),
+      handleSignInActions: this.handleSignInActions.bind(this)
+    }}/>
   }
 }
 
