@@ -22,15 +22,15 @@ export default SignIn = (props) => (
       />
 
       <Text>Sign Up</Text>
-      <TextInput style={styles.login} placeholder="Username"
+      <TextInput style={styles.login} placeholder="Create Username"
         onChangeText={(text)=>{props.screenProps.handleSignUpActions('username', text)}}
       />
-      <TextInput style={styles.pass} placeholder="Password"
+      <TextInput style={styles.pass} placeholder="Create Password"
         onChangeText={(text)=>{props.screenProps.handleSignUpActions('password', text)}}
       />
 
       <Button
-        raised iconRight icon={{name: 'add'}}
+        raised iconRight icon={{name: 'person-add'}}
         title='Sign Up For HereNow' buttonStyle={styles.button}
         onPress={()=>{props.screenProps.handleSignUpActions('submit')}}
       />
@@ -43,7 +43,6 @@ const styles = StyleSheet.create({
   row: {
     flex: 1,
     flexDirection: 'column',
-    
   },
   login: {
     height: 40,
