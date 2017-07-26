@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, AppRegistry, ScrollView} from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { Toast } from 'native-base';
 
 import Settings from './src/settings/Settings.js';
 import AdminSettings from './src/settings/AdminSettings.js';
@@ -19,6 +20,7 @@ class AwesomeProject extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      showToast: false,
       userId: null,
       userData: {},
       messages: [],
@@ -57,7 +59,7 @@ class AwesomeProject extends React.Component {
 
   handleSignUpClick(){
     fetch('http://localhost:3000/signup', {
-      method: 'POST', 
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -98,7 +100,7 @@ class AwesomeProject extends React.Component {
 
   handleSignInClick(){
     fetch('http://localhost:3000/login', {
-      method: 'POST', 
+      method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -111,8 +113,15 @@ class AwesomeProject extends React.Component {
     .then(response => response.json())
     .then(data => {
       if(data.fail){
+        console.log('login failed!!!')
+        Toast.show({
+              text: 'Wrong info!',
+              position: 'bottom',
+              buttonText: 'Okay'
+            })
         this.setState({userId: 'fail'})
       } else {
+        console.log('login success!!!')
         this.setState({userId: data.id})
       }
     })
@@ -141,16 +150,16 @@ class AwesomeProject extends React.Component {
       this.setState({messages: data});
       console.log('data from fetch messages', this.state.messages);
     })
-    .catch(err => console.log(err));    
-  }  
+    .catch(err => console.log(err));
+  }
 
   render() {
-    return <Stack screenProps={{ 
+    return <Stack screenProps={{
       handleSignUpActions: this.handleSignUpActions.bind(this),
       handleSignInActions: this.handleSignInActions.bind(this),
-      userData:this.state.userData, 
+      userData:this.state.userData,
       fetchMessages: this.fetchMessages.bind(this),
-      messages:this.state.messages      
+      messages:this.state.messages
     }}/>
   }
 }
