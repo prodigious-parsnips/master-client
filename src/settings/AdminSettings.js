@@ -15,12 +15,60 @@ export default class AdminSettings extends React.Component {
     this.updateDistanceThreshold = this.updateDistanceThreshold.bind(this);
   }
 
+  componentDidMount() {
+    fetch(`http://localhost:3000/api/settings?id=13`)
+    .then(response => response.json())
+    .then(data => {
+      console.log('AdminSettings componentDidMount!! ',data);
+
+    })
+    .catch(err => console.log(err));
+  }
+
   updateUpvoteThreshold() {
 
+    let form = {
+      userPrefId: 1,
+      upvoteThreshold: this.state.upvoteThreshold,
+      locationThreshold: this.state.distanceThreshold
+    }
+
+    console.log('FORM FROM UPDATE UPVOTES!! ', form)
+
+    fetch("http://localhost:3000/api/settings", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(form)
+    }).then((data) => {
+      console.log('success from upvoteThreshold fetch!');
+    }).catch((err) => {
+      console.log('error from upvoteThreshold fetch ', err);
+    })
   }
 
   updateDistanceThreshold() {
-    
+
+    let form = {
+      userPrefId: 1,
+      upvoteThreshold: this.state.upvoteThreshold,
+      locationThreshold: this.state.distanceThreshold
+    }
+
+    fetch("http://localhost:3000/api/settings", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(form)
+    }).then((data) => {
+      console.log('success from distanceThreshold fetch!');
+    }).catch((err) => {
+      console.log('error from distanceThreshold fetch ', err);
+    })    
   }
 
   render() {
