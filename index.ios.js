@@ -14,7 +14,7 @@ import PostView from './src/PostView.js';
 import SignIn from './src/SignIn.js';
 import Drawer from './src/DrawerNav.js';
 import HomeScreen from './HomeScreen.js';
-var FAKE_SUBREDDIT_ID = 13;
+var FAKE_SUBREDDIT_ID = 2;
 
 class AwesomeProject extends React.Component {
   constructor(props) {
@@ -132,19 +132,21 @@ class AwesomeProject extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`http://localhost:3000/api/user?id=13`)
+    fetch(`http://localhost:3000/api/user?id=${FAKE_SUBREDDIT_ID}`)
     .then(response => response.json())
     .then(data => {
-      this.setState({userData: data});
+      this.setState({userData: data}, () => {
+        console.log("user data:", this.state.userData);
+        this.fetchMessages();
+      });
 
     })
     .catch(err => console.log(err));
-    this.fetchMessages();
   }
 
   fetchMessages() {
     console.log('is this happening after the post?');
-    fetch(`http://localhost:3000/api/messages?subredditId=13`)
+    fetch(`http://localhost:3000/api/messages?subredditId=${this.state.userData[0].subreddits[0].id}`)
     .then(response => response.json())
     .then(data => {
       this.setState({messages: data});

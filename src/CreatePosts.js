@@ -16,6 +16,10 @@ export default class CreatePosts extends Component {
     this.sendTextInput = this.sendTextInput.bind(this);
   }
 
+  componentDidMount() {
+    console.log("props??", this.props);
+  }
+
   sendTextInput () {
 
      const { navigate } = this.props.navigation;
