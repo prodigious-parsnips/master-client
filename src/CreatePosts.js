@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Dimensions, StyleSheet, Text, TextInput, View } from 'react-native';
-import { Button } from 'react-native-elements'
+import { Button } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
 
 const { height, width } = Dimensions.get('window');
