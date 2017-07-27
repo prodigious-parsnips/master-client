@@ -20,18 +20,17 @@ export default class CreatePosts extends Component {
     console.log("props??", this.props);
   }
 
-  sendTextInput () {
-
+  sendTextInput (event, val = null) {
+    console.log('what is val', val);
      const { navigate } = this.props.navigation;
-
      var form = {
       subredditId: this.props.screenProps.userData[0].subreddits[0].id,
-      postId: null,
+      postId: val,
       userId: this.props.screenProps.userData[0].id,
       title: this.state.title,
       text: this.state.text,
       geotag: '454x, 565y',
-      subId: this.props.screenProps.userData[0].subreddits[0].id,     
+      subId: this.props.screenProps.userData[0].subreddits[0].id    
     }
 
     fetch("http://localhost:3000/api/messages", {

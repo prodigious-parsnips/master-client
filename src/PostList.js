@@ -20,7 +20,7 @@ export default class PostList extends React.Component {
         <FlatList style={styles.list}
           data={this.props.messages}
           renderItem={({item}) => (
-            <TouchableOpacity style={styles.container} onPress={() => navigate('PostView', {title: item.title, text: item.text})}>
+            <TouchableOpacity style={styles.container} onPress={() => navigate('PostView', {title: item.title, text: item.text, id: item.id})}>
               <PostPreview title={item.title}/>
             </TouchableOpacity>
           )}

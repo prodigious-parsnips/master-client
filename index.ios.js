@@ -37,6 +37,18 @@ class AwesomeProject extends React.Component {
     };
   }
 
+  componentDidMount() {
+    fetch(`http://localhost:3000/api/user?id=${FAKE_SUBREDDIT_ID}`)
+    .then(response => response.json())
+    .then(data => {
+      this.setState({userData: data}, () => {
+        console.log("user data:", this.state.userData);
+        this.fetchMessages();
+      });
+    })
+    .catch(err => console.log(err));
+  }
+
   handleSignUpActions(type, text) {
     if(type === 'username') {
       this.setState((state)=>{
@@ -98,7 +110,7 @@ class AwesomeProject extends React.Component {
     }
   };
 
-  handleSignInClick(){
+  handleSignInClick () {
     fetch('http://localhost:3000/login', {
       method: 'POST',
       headers: {
@@ -131,22 +143,8 @@ class AwesomeProject extends React.Component {
 
   };
 
-  componentDidMount() {
-    fetch(`http://localhost:3000/api/user?id=${FAKE_SUBREDDIT_ID}`)
-    .then(response => response.json())
-    .then(data => {
-      this.setState({userData: data}, () => {
-        console.log("user data:", this.state.userData);
-        this.fetchMessages();
-      });
-
-    })
-    .catch(err => console.log(err));
-  }
-
-  fetchMessages() {
-    console.log('is this happening after the post?');
-    fetch(`http://localhost:3000/api/messages?subredditId=${this.state.userData[0].subreddits[0].id}`)
+  fetchMessages () {
+    fetch(`http://localhost:3000/api/messages?subredditId=${this.state.userData.subreddits[0].id}`)
     .then(response => response.json())
     .then(data => {
       this.setState({messages: data});
@@ -154,6 +152,7 @@ class AwesomeProject extends React.Component {
     })
     .catch(err => console.log(err));
   }
+
 
   render() {
     return <Stack screenProps={{
