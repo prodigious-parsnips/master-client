@@ -1,29 +1,33 @@
 import { combineReducers } from 'redux';
-import { nav } from '../Navigators.js';
+import { nav, initialNavState } from '../Navigators.js';
 
-function userSettings(state = {}, action) {
-
-}
-
-function subs(state = {}, action) {
+function posts(state = {}, action) {
   switch (action.type) {
-    case 'SET_SUBS':
-      return {...state, list: action.subs};
+    case 'FETCH_POSTS_REQUEST':
+      return {...state, postList: [{title: 'Loading...'}]};
+    case 'FETCH_POSTS_SUCCESS':
+      return {...state, postList: action.posts};
+    case 'FETCH_POSTS_FAILURE':
+      console.log(action.err);
+    case 'SELECT_POST':
+      console.log('postId: ', action.id);
     default:
       return state;
   }
 }
 
-function posts(state = {}, action) {
+function user(state = {currentSub: 4}, action) {
   switch (action.type) {
-    case 'FETCH_POSTS_REQUEST':
-      return {...state, list: [{title: 'Loading...'}]};
-    case 'FETCH_POSTS_SUCCESS':
-      return {...state, list: action.posts};
-    case 'FETCH_POSTS_FAILURE':
+    case 'SELECT_SUB':
+      console.log('itemValue', action.itemValue);
+      return {...state, currentSub: action.itemValue};
+    case 'FETCH_USER_DATA_REQUEST':
+      console.log('fetching user data');
+      return {...state};
+    case 'FETCH_USER_DATA_SUCCESS':
+      return {...state, userData: action.userData};
+    case 'FETCH_USER_DATA_FAILURE':
       console.log(action.err);
-    case 'SELECT_POST':
-      console.log('THISISINTHEREDUCERPOSTID' + action.id);
     default:
       return state;
   }
@@ -53,8 +57,16 @@ function posts(state = {}, action) {
 // store.dispatch({type:'SET_SUBS', subs: ['local', 'main']});
 // store.getState().subs /// === ['local, main']
 
-export default appReducer = combineReducers({
+const appReducer = combineReducers({
+  user,
   nav,
-  subs,
   posts,
 });
+
+const initialState = {
+  nav: initialNavState,
+  user: null,
+  posts: null,
+};
+
+export { appReducer, initialState };
