@@ -1,19 +1,14 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
+import { connect } from 'react-redux';
 import { store } from './';
 import TestScreen from './components/TestScreen.js';
 import SubbedMap from './components/SubbedMap.js';
 import { getDrawerHeader } from './components/NavBar.js';
 
-// const DynamicDrawer = (props) => (
-//   <ScrollView >
-//     <DrawerItems {...props} items={[
-//       {key: 'Home', routeName: 'Home', params: { name: 'first' }},
-//       {key: 'Home', routeName: 'Home', params: { name: 'first' }},
-//     ]} />
-//   </ScrollView>
-// );
+
+
 
 const DynamicDrawer = (props) => (
   <ScrollView >
@@ -22,7 +17,8 @@ const DynamicDrawer = (props) => (
 );
 
 const Drawer = DrawerNavigator({
-  Home: {screen: SubbedMap}
+  Home: {screen: SubbedMap},
+  Test: {screen: TestScreen},
 }, {contentComponent: DynamicDrawer});
 
 
@@ -46,7 +42,7 @@ const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.g
 
 const nav = (state = initialState, action) => {
   const nextState = AppNavigator.router.getStateForAction(action, state);
-  // console.log('\nTHIS IS STATE IN NAVREDUCER\n'+ JSON.stringify(state, null, 2));
+  console.log('\nTHIS IS STATE IN NAVREDUCER\n'+ JSON.stringify(state, null, 2));
 
   // Simply return the original `state` if `nextState` is null or undefined.
   return nextState || state;
