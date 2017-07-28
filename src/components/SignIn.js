@@ -23,7 +23,7 @@ class SignIn extends React.Component {
   }
 
   handleTextChange(text, type){
-    console.log('this is type ', type)
+    // console.log('this is type ', type)
     switch (type) {
       case 'signInUsername':
         this.setState((state)=>{
@@ -97,7 +97,7 @@ class SignIn extends React.Component {
               <Button
                 raised iconRight icon={{name: 'person-add'}}
                 title='Sign Up For HereNow' buttonStyle={styles.button}
-                onPress={()=>{this.props.handleSignUp(this.state.signUp)}}
+                onPress={()=>{this.props.handleSignUp(this.state.signUp, this.props.navigation.navigate)}}
               />
             </View>
           </Tab>
@@ -111,7 +111,7 @@ class SignIn extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSignUp: (credentials)=>{ 
+    handleSignUp: (credentials, navigate)=>{ 
       fetch('http://localhost:3000/signup', {
         method: 'POST',
         headers: {
@@ -129,16 +129,17 @@ const mapDispatchToProps = (dispatch) => {
           Alert.alert('Error', 'User Already exists!');
           return;
         }
-        console.log('the then is firing!')
         dispatch({type: 'AUTHORIZE', userId: data.id})
+        console.log('this is navigate ', navigate)
+        // navigate('SubbedMap')
+        navigate('Home')
         //this.setState({userId: data.id}, ()=>{console.log('this is the state after set ', this.state)})
       })
       .catch(err => {
-        console.log(err);
+        Alert.alert('Error', 'There has been a server error');
       })
     },  
     handleSignIn: (credentials)=>{
-      console.log('these are the credentials!!! ', credentials)
       fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
@@ -156,22 +157,24 @@ const mapDispatchToProps = (dispatch) => {
           Alert.alert('Error', 'Incorrect Username or Password');
           return;
         }
-        console.log('the then is firing!')
         dispatch({type: 'AUTHORIZE', userId: data.id})
+
         //this.setState({userId: data.id}, ()=>{console.log('this is the state after set ', this.state)})
       })
       .catch(err => {
-        console.log('catch is firigin!')
-        // console.log(err);
+        Alert.alert('Error', 'There has been a server error');
 
       })
     },
   };
+}
 
+const mapStateToProps = (state)=>{
+  return state.nav;
 }
 
 
-export default connect(()=>{return {}}, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
 
 
 const styles = StyleSheet.create({

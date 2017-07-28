@@ -38,9 +38,9 @@ App = connect(mapStateToProps)(App);
 
 const store = createStore(appReducer);
 
-setInterval(()=>{
-  console.log(store.getState())
-}, 4000)
+// setInterval(()=>{
+//   console.log(store.getState())
+// }, 4000)
 
 
 class Root extends React.Component {
