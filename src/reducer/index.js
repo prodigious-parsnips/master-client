@@ -15,8 +15,9 @@ function subs(state = {}, action) {
 }
 
 function user(state = {}, action) {
+  console.log('this is the user id SUPPOSELDY ', action.userId)
   switch (action.type) {
-    case 'SIGN_UP':
+    case 'AUTHORIZE':
       return {...state, userId: action.userId};
     default:
       return state;
@@ -66,4 +67,5 @@ export default appReducer = combineReducers({
   nav,
   subs,
   posts,
+  user,
 });

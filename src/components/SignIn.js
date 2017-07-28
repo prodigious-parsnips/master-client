@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, ScrollView, View, TextInput } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, TextInput, Alert } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { connect } from 'react-redux';
@@ -27,7 +27,6 @@ class SignIn extends React.Component {
     switch (type) {
       case 'signInUsername':
         this.setState((state)=>{
-          console.log('sign in username is firiing')
           newState = state;
           newState.signIn.username = text;
           return newState;
@@ -35,7 +34,6 @@ class SignIn extends React.Component {
         break;
       case 'signInPassword':
         this.setState((state)=>{
-          console.log('sign in password is firiing')
           newState = state;
           newState.signIn.password = text;
           return newState;
@@ -43,7 +41,6 @@ class SignIn extends React.Component {
         break;
       case 'signUpUsername':
         this.setState((state)=>{
-          console.log('sign up username is firiing')
           newState = state;
           newState.signUp.username = text;
           return newState;
@@ -51,7 +48,6 @@ class SignIn extends React.Component {
         break;
       case 'signUpPassword':
         this.setState((state)=>{
-          console.log('sign up password is firiing')
           newState = state;
           newState.signUp.password = text;
           return newState;
@@ -83,7 +79,7 @@ class SignIn extends React.Component {
               <Button
                 raised iconRight icon={{name: 'person'}}
                 title='Sign Into HereNow' buttonStyle={styles.button}
-                onPress={()=>{this.props.handleSignIn(this.state.signIn.username, this.state.signIn.password)}}
+                onPress={()=>{this.props.handleSignIn(this.state.signIn)}}
               />
             </View>
           </Tab>
@@ -101,7 +97,7 @@ class SignIn extends React.Component {
               <Button
                 raised iconRight icon={{name: 'person-add'}}
                 title='Sign Up For HereNow' buttonStyle={styles.button}
-                onPress={()=>{this.props.handleSignUp(this.state.signUp.username, this.state.signUp.password)}}
+                onPress={()=>{this.props.handleSignUp(this.state.signUp)}}
               />
             </View>
           </Tab>
@@ -115,17 +111,60 @@ class SignIn extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSignUp: (username, password)=>{ 
-      console.log('handleSignUp is firing!')
-      console.log('username ', username)
-      console.log('password ', password)
-      //dispatch({type: type, payload: event.target.value})
-    },
-    handleSignIn: (username, password)=>{
-      console.log('handleSignIn is firing!')
-      console.log('username ', username)
-      console.log('password ', password)
-      //dispatch({type: type, payload: event.target.value})
+    handleSignUp: (credentials)=>{ 
+      fetch('http://localhost:3000/signup', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: credentials.username,
+          password: credentials.password
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if(data.fail){
+          Alert.alert('Error', 'User Already exists!');
+          return;
+        }
+        console.log('the then is firing!')
+        dispatch({type: 'AUTHORIZE', userId: data.id})
+        //this.setState({userId: data.id}, ()=>{console.log('this is the state after set ', this.state)})
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    },  
+    handleSignIn: (credentials)=>{
+      console.log('these are the credentials!!! ', credentials)
+      fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: credentials.username,
+          password: credentials.password
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if(data.fail){
+          Alert.alert('Error', 'Incorrect Username or Password');
+          return;
+        }
+        console.log('the then is firing!')
+        dispatch({type: 'AUTHORIZE', userId: data.id})
+        //this.setState({userId: data.id}, ()=>{console.log('this is the state after set ', this.state)})
+      })
+      .catch(err => {
+        console.log('catch is firigin!')
+        // console.log(err);
+
+      })
     },
   };
 
