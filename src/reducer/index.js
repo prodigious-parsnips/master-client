@@ -14,6 +14,15 @@ function subs(state = {}, action) {
   }
 }
 
+function user(state = {}, action) {
+  switch (action.type) {
+    case 'SIGN_UP':
+      return {...state, userId: action.userId};
+    default:
+      return state;
+  }
+}
+
 function posts(state = {}, action) {
   switch (action.type) {
     case 'FETCH_POSTS_REQUEST':

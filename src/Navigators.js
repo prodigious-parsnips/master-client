@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { store } from './';
 import TestScreen from './components/TestScreen.js';
 import SubbedMap from './components/SubbedMap.js';
+import SignIn from './components/SignIn.js';
 import { getDrawerHeader } from './components/NavBar.js';
 
 
@@ -19,6 +20,7 @@ const DynamicDrawer = (props) => (
 const Drawer = DrawerNavigator({
   Home: {screen: SubbedMap},
   Test: {screen: TestScreen},
+  Account: {screen: SignIn}
 }, {contentComponent: DynamicDrawer});
 
 
