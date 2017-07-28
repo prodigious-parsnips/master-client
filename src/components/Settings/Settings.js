@@ -4,6 +4,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 
 import UserSettings from './UserSettings.js';
 import AdminSettings from './AdminSettings.js';
+import {connect} from 'react-redux';
 
 var { height, width } = Dimensions.get('window');
 

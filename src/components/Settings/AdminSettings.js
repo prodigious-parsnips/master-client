@@ -11,8 +11,6 @@ export default class AdminSettings extends React.Component {
       distanceThreshold: 0,
     };
 
-    
-
     this.updateUpvoteThreshold = this.updateUpvoteThreshold.bind(this);
     this.updateDistanceThreshold = this.updateDistanceThreshold.bind(this);
   }
@@ -30,7 +28,6 @@ export default class AdminSettings extends React.Component {
   updateUpvoteThreshold() {
 
     let form = {
-      subredditTitle:'the title'
       userPrefId: 1,
       upvoteThreshold: this.state.upvoteThreshold,
       locationThreshold: this.state.distanceThreshold

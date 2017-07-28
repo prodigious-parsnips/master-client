@@ -7,6 +7,7 @@ import TestScreen from './components/TestScreen.js';
 import SubbedMap from './components/SubbedMap.js';
 import SignIn from './components/SignIn.js';
 import PostView from './components/PostView.js';
+import Settings from './components/Settings/Settings.js'
 import { getDrawerHeader } from './components/NavBar.js';
 
 const DynamicDrawer = (props) => (
