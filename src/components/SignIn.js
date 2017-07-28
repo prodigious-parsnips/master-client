@@ -22,8 +22,43 @@ class SignIn extends React.Component {
     }
   }
 
-  handleTextChange(event, type){
-    console.log('this is an event??? ', event, type)
+  handleTextChange(text, type){
+    console.log('this is type ', type)
+    switch (type) {
+      case 'signInUsername':
+        this.setState((state)=>{
+          console.log('sign in username is firiing')
+          newState = state;
+          newState.signIn.username = text;
+          return newState;
+        });
+        break;
+      case 'signInPassword':
+        this.setState((state)=>{
+          console.log('sign in password is firiing')
+          newState = state;
+          newState.signIn.password = text;
+          return newState;
+        });
+        break;
+      case 'signUpUsername':
+        this.setState((state)=>{
+          console.log('sign up username is firiing')
+          newState = state;
+          newState.signUp.username = text;
+          return newState;
+        });
+        break;
+      case 'signUpPassword':
+        this.setState((state)=>{
+          console.log('sign up password is firiing')
+          newState = state;
+          newState.signUp.password = text;
+          return newState;
+        });
+        break;
+    }
+    
 
   }
 
