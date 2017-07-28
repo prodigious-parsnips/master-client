@@ -9,13 +9,6 @@ export default class AdminSettings extends React.Component {
   }
 
   componentDidMount() {
-    // fetch(`http://localhost:3000/api/settings?id=13`)
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log('AdminSettings componentDidMount!! ',data);
-    //
-    // })
-    // .catch(err => console.log(err));
     console.log('DMIN PROPS ', this.props)
   }
 
