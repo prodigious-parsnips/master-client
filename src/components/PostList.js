@@ -4,15 +4,18 @@ import PostPreview from './PostPreview';
 import styles from '../styles';
 // export default class SubbedMap extends React.Component {
 export default PostList = (props) => {
-  console.log('\nPOSTLIST PROPS\n' + JSON.stringify(props, null, 2));
+  console.log('\nPOSTLIST PROPS\n' + JSON.stringify(props, null, 3));
   return (
   <ScrollView>
     <FlatList
       data={props.messages}
-      keyExtractor={item => item.id}
+      keyExtractor={item => {
+        // console.log('\nLOOOOOOOOOOOOK: ' + JSON.stringify(item, null, 2))
+        return item.id
+      }
+    }
       renderItem={({item}) => (
-        <TouchableOpacity style={styles.container}
-          >
+        <TouchableOpacity style={styles.container} onPress={() => props.selectPost(item.id)}>
           <PostPreview title={item.title}/>
         </TouchableOpacity>
       )}/>
