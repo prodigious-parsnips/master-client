@@ -3,6 +3,7 @@ import { StyleSheet, Text, ScrollView, View, TextInput, Alert } from 'react-nati
 import { Button } from 'react-native-elements';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { connect } from 'react-redux';
+import StatusBarAlert from 'react-native-statusbar-alert'
 
 // https://github.com/oblador/react-native-vector-icons#installation
 
@@ -18,7 +19,8 @@ class SignIn extends React.Component {
       signUp: {
         username: null,
         password: null
-      }
+      },
+      statusBarVisible: false
     }
   }
 
@@ -61,6 +63,12 @@ class SignIn extends React.Component {
   render() { 
     return (
       <Container>
+      <StatusBarAlert
+        visible={this.state.statusBarVisible}
+        message="Authentication succesful!"
+        backgroundColor="#3CC29E"
+        color="white"
+      />
         
       <Header hasTabs />
 
@@ -79,7 +87,7 @@ class SignIn extends React.Component {
               <Button
                 raised iconRight icon={{name: 'person'}}
                 title='Sign Into HereNow' buttonStyle={styles.button}
-                onPress={()=>{this.props.handleSignIn(this.state.signIn)}}
+                onPress={()=>{this.props.handleSignIn(this.state.signIn, this.props.navigation.navigate)}}
               />
             </View>
           </Tab>
@@ -130,16 +138,14 @@ const mapDispatchToProps = (dispatch) => {
           return;
         }
         dispatch({type: 'AUTHORIZE', userId: data.id})
-        console.log('this is navigate ', navigate)
-        // navigate('SubbedMap')
         navigate('Home')
-        //this.setState({userId: data.id}, ()=>{console.log('this is the state after set ', this.state)})
       })
       .catch(err => {
+        console.log('this is the err ', err)
         Alert.alert('Error', 'There has been a server error');
       })
     },  
-    handleSignIn: (credentials)=>{
+    handleSignIn: (credentials, navigate)=>{
       fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
@@ -158,10 +164,10 @@ const mapDispatchToProps = (dispatch) => {
           return;
         }
         dispatch({type: 'AUTHORIZE', userId: data.id})
-
-        //this.setState({userId: data.id}, ()=>{console.log('this is the state after set ', this.state)})
+        navigate('Home')
       })
       .catch(err => {
+        console.log('this is the err ', err)
         Alert.alert('Error', 'There has been a server error');
 
       })
