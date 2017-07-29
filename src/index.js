@@ -1,4 +1,5 @@
 import React from 'react';
+import { View } from 'react-native'
 import { combineReducers, createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
 import TestScreen from './components/TestScreen.js';
@@ -26,7 +27,7 @@ class App extends React.Component {
 
   render() {
     return (
-        <AppNavigator />
+          <AppNavigator />
         );
   }
 }
@@ -59,3 +60,10 @@ class Root extends React.Component {
 
 
 export { Root, App, store }
+
+
+
+        // <View>
+        //   <SubredditList />
+        //   <AppNavigator />
+        // </View >

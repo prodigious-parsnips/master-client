@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { Button } from 'react-native'
+import { ScrollView, View } from 'react-native';
 import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
 import { connect } from 'react-redux';
 import { store } from './';
@@ -9,11 +10,19 @@ import SignIn from './components/SignIn.js';
 import PostView from './components/PostView.js';
 import { getDrawerHeader } from './components/NavBar.js';
 
-const DynamicDrawer = (props) => (
-  <ScrollView >
-    <DrawerItems {...props} />
-  </ScrollView>
-);
+const DynamicDrawer = (props) => {
+  console.log('this is props in dynamic drawer ', props)
+  return(
+    <ScrollView >
+      <DrawerItems {...props} />
+      <Button
+      onPress={()=>{props.navigation.navigate('Home')}}
+        title='Subreddits'
+        color='#000000'
+      />
+    </ScrollView>
+  );
+}
 
 const Drawer = DrawerNavigator({
   Home: {screen: SubbedMap},

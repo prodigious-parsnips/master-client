@@ -1,8 +1,9 @@
 import React from 'react';
-import { ScrollView, Text, PickerIOS } from 'react-native';
+import { ScrollView, Text, PickerIOS, View } from 'react-native';
 import { connect } from 'react-redux';
 import PostList from './PostList.js';
 import styles from '../styles';
+import SubredditList from './SubredditList';
 
 class SubbedMap extends React.Component {
 
@@ -29,17 +30,20 @@ class SubbedMap extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.app}>
-        <PickerIOS
-          selectedValue={this.props.currentSub}
-          onValueChange={(subId) => {
-            this.props.selectSub(subId);
-          }}
-          >
-          {this.props.userData ? this.props.userData.subreddits.map(el => (<PickerIOS.Item key={el.id} value={el.id} label={el.title} />)): null}
-        </PickerIOS>
-        <PostList messages={this.props.posts} selectPost={this.props.selectPost}/>
-      </ScrollView>
+      //<View>
+      // <SubredditList/>
+      // <ScrollView style={styles.app}>
+      //   <PickerIOS
+      //     selectedValue={this.props.currentSub}
+      //     onValueChange={(subId) => {
+      //       this.props.selectSub(subId);
+      //     }}
+      //     >
+      //     {this.props.userData ? this.props.userData.subreddits.map(el => (<PickerIOS.Item key={el.id} value={el.id} label={el.title} />)): null}
+      //   </PickerIOS>
+      //   <PostList messages={this.props.posts} selectPost={this.props.selectPost}/>
+      // </ScrollView>
+      // </View>
     );
   }
 }
