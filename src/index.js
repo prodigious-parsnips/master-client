@@ -25,7 +25,9 @@ class App extends React.Component {
   }
 
   render() {
-    return <AppNavigator />;
+    return (
+        <AppNavigator />
+        );
   }
 }
 
@@ -36,6 +38,11 @@ const mapStateToProps = (state) => ({
 App = connect(mapStateToProps, initialState)(App);
 
 const store = createStore(appReducer);
+
+// setInterval(()=>{
+//   console.log(store.getState())
+// }, 4000)
+
 
 class Root extends React.Component {
   constructor(props) {

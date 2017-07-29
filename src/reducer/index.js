@@ -18,6 +18,8 @@ function posts(state = {}, action) {
 
 function user(state = {currentSub: 4}, action) {
   switch (action.type) {
+    case 'AUTHORIZE':
+      return {...state, userId: action.userId};
     case 'SELECT_SUB':
       console.log('itemValue', action.itemValue);
       return {...state, currentSub: action.itemValue};
@@ -61,6 +63,7 @@ const appReducer = combineReducers({
   user,
   nav,
   posts,
+  user,
 });
 
 const initialState = {
