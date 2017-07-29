@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native';
 import faker from 'faker';
 
 const styles = StyleSheet.create({
@@ -21,12 +21,14 @@ const styles = StyleSheet.create({
 });
 
 const Row = (props) => (
+  <TouchableHighlight style={styles.container} onPress = { () => {console.log('this is being clicked!')} }>
   <View style={styles.container}>
     <Image source={{ uri: faker.internet.avatar()}} style={styles.photo} />
     <Text style={styles.text}>
       {faker.company.bs()}
     </Text>
   </View>
+  </TouchableHighlight>
 );
 
 export default Row;
