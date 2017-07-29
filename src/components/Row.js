@@ -20,15 +20,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const Row = (props) => (
-  <TouchableHighlight style={styles.container} onPress = { () => {console.log('this is being clicked!')} }>
-  <View style={styles.container}>
-    <Image source={{ uri: faker.internet.avatar()}} style={styles.photo} />
-    <Text style={styles.text}>
-      {faker.company.bs()}
-    </Text>
-  </View>
-  </TouchableHighlight>
-);
+const Row = (props) => {
+  console.log('this is props in row! ', props)
+  return (
+    <TouchableHighlight style={styles.container} onPress = { () => {console.log('this is being clicked!')} }>
+    <View style={styles.container}>
+      <Image source={{ uri: faker.internet.avatar()}} style={styles.photo} />
+      <Text style={styles.text}>
+        {faker.company.bs()}
+      </Text>
+    </View>
+    </TouchableHighlight>
+  );
+}
 
 export default Row;

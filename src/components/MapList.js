@@ -1,7 +1,8 @@
 
 import React from 'react';
 import Row from './Row';
-import { View, ListView, StyleSheet, Text, TouchableHighlight } from 'react-native';
+import { View, ListView, StyleSheet, Text, TouchableHighlight} from 'react-native';
+import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,16 +27,22 @@ class MapList extends React.Component {
     return (
       <View style={styles.container}>
         <Text style ={styles.text}>Select a Map</Text>
-        <TouchableHighlight style={styles.container}onPress = { () => {console.log('this is being clicked!')} }>
           <ListView
             style={styles.container}
             dataSource={this.state.dataSource}
-            renderRow={() => <Row/>}
+            renderRow={() => <Row nav={this.props.nav}/>}
           />
-        </TouchableHighlight>
       </View>
     );
   }
 }
 
-export default MapList;
+const mapDispatchToProps = ()=>{
+  return {};
+}
+
+const mapStateToProps = (state)=>{
+  return state.nav;
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapList);
