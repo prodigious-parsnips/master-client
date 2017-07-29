@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { TouchableOpacity, View, StyleSheet, Switch } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
-// import Icon from 'react-native-vector-icons/FontAwesome';
 
 class NavBarItem extends Component {
   render() {
@@ -21,9 +18,8 @@ class NavBarItem extends Component {
 
 export default NavBarItem;
 
-  // <View style={styles.row}>
 const getDrawerHeader = navigation => (
-  <View>
+  <View style={styles.row}>
     <NavBarItem
       iconName="bars"
       onPress={() => {
@@ -34,10 +30,8 @@ const getDrawerHeader = navigation => (
         }
       }}
     />
+    {navigation.state.index === 0 && <Switch />}
   </View>
 );
-
-// {navigation.state.index === 0 && <Switch />}
-
 
 export { getDrawerHeader };

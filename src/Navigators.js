@@ -6,10 +6,8 @@ import { store } from './';
 import TestScreen from './components/TestScreen.js';
 import SubbedMap from './components/SubbedMap.js';
 import SignIn from './components/SignIn.js';
+import PostView from './components/PostView.js';
 import { getDrawerHeader } from './components/NavBar.js';
-
-
-
 
 const DynamicDrawer = (props) => (
   <ScrollView >
@@ -23,8 +21,6 @@ const Drawer = DrawerNavigator({
   Account: {screen: SignIn}
 }, {contentComponent: DynamicDrawer});
 
-
-
 Drawer.navigationOptions = ({ navigation }) => {
   return {
     title: 'HereNow',
@@ -37,17 +33,17 @@ Drawer.navigationOptions = ({ navigation }) => {
 
 const AppNavigator = StackNavigator({
   Drawer: {screen: Drawer},
+  PostView: {screen: PostView},
   Posts: {screen: TestScreen},
 });
 
-const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Posts'));
+const initialNavState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Posts'));
 
-const nav = (state = initialState, action) => {
+const nav = (state = initialNavState, action) => {
   const nextState = AppNavigator.router.getStateForAction(action, state);
-  console.log('\nTHIS IS STATE IN NAVREDUCER\n'+ JSON.stringify(state, null, 2));
 
   // Simply return the original `state` if `nextState` is null or undefined.
   return nextState || state;
 };
 
-export { AppNavigator, nav };
+export { AppNavigator, nav, initialNavState };

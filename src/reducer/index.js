@@ -1,39 +1,35 @@
 import { combineReducers } from 'redux';
-import { nav } from '../Navigators.js';
-
-function userSettings(state = {}, action) {
-
-}
-
-function subs(state = {}, action) {
-  switch (action.type) {
-    case 'SET_SUBS':
-      return {...state, list: action.subs};
-    default:
-      return state;
-  }
-}
-
-function user(state = {}, action) {
-  console.log('this is the user id SUPPOSELDY ', action.userId)
-  switch (action.type) {
-    case 'AUTHORIZE':
-      return {...state, userId: action.userId};
-    default:
-      return state;
-  }
-}
+import { nav, initialNavState } from '../Navigators.js';
 
 function posts(state = {}, action) {
   switch (action.type) {
     case 'FETCH_POSTS_REQUEST':
-      return {...state, list: [{title: 'Loading...'}]};
+      return {...state, postList: [{title: 'Loading...'}]};
     case 'FETCH_POSTS_SUCCESS':
-      return {...state, list: action.posts};
+      return {...state, postList: action.posts};
     case 'FETCH_POSTS_FAILURE':
       console.log(action.err);
     case 'SELECT_POST':
-      console.log('THISISINTHEREDUCERPOSTID' + action.id);
+      console.log('postId: ', action.id);
+    default:
+      return state;
+  }
+}
+
+function user(state = {currentSub: 4}, action) {
+  switch (action.type) {
+    case 'AUTHORIZE':
+      return {...state, userId: action.userId};
+    case 'SELECT_SUB':
+      console.log('itemValue', action.itemValue);
+      return {...state, currentSub: action.itemValue};
+    case 'FETCH_USER_DATA_REQUEST':
+      console.log('fetching user data');
+      return {...state};
+    case 'FETCH_USER_DATA_SUCCESS':
+      return {...state, userData: action.userData};
+    case 'FETCH_USER_DATA_FAILURE':
+      console.log(action.err);
     default:
       return state;
   }
@@ -63,9 +59,17 @@ function posts(state = {}, action) {
 // store.dispatch({type:'SET_SUBS', subs: ['local', 'main']});
 // store.getState().subs /// === ['local, main']
 
-export default appReducer = combineReducers({
+const appReducer = combineReducers({
+  user,
   nav,
-  subs,
   posts,
   user,
 });
+
+const initialState = {
+  nav: initialNavState,
+  user: null,
+  posts: null,
+};
+
+export { appReducer, initialState };
