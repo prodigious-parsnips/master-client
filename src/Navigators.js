@@ -22,6 +22,7 @@ const DynamicDrawer = (props) => {
 
 const Drawer = DrawerNavigator({
   Home: {screen: SubbedMap},
+  Settings: {screen: Settings},
   Test: {screen: TestScreen},
   Account: {screen: SignIn},
   Maps: {screen: MapList}
