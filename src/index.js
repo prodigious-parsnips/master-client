@@ -73,7 +73,6 @@ App = connect(mapStateToProps, initialState)(App);
 const store = createStore(appReducer);
 
 
-
 // setInterval(()=>{
 //   console.log(store.getState())
 // }, 5000)

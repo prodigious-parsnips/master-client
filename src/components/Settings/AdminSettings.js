@@ -77,6 +77,11 @@ export default class AdminSettings extends React.Component {
             onSlidingComplete={this.updateAdminThresholds}
           />
 
+          <Text>Daily Notification Limit: {this.props.adminSettingsNotifThresholdValue}</Text>
+          <Slider style={{width:200}} maximumValue={10} step={1}
+            value={this.props.adminSettingsNotifThresholdValue}
+            onValueChange={(notifThreshold) => this.props.adminSettingsNotifThreshold(notifThreshold)}
+            onSlidingComplete={(notifThreshold) => this.props.adminSettingsNotifThreshold(notifThreshold)} />
         </View>
       </ScrollView>
     )
