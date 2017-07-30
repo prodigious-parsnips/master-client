@@ -34,6 +34,37 @@ function user(state = {currentSub: 4}, action) {
       return state;
   }
 }
+
+
+
+function settings(state = {
+    userSettingsUpvoteThreshold: 0,
+    userSettingsDistanceThreshold: 0,
+    userSettingsNotifThreshold: 0,
+    adminSettingsUpvoteThreshold: 0,
+    adminSettingsDistanceThreshold: 0,
+    adminSettingsNotifThreshold: 0 
+  }, action) {
+  switch (action.type) {
+    case 'USER_SETTINGS_UPVOTE_THRESHOLD':
+      return {...state, userSettingsUpvoteThreshold: action.userSettingsUpvoteThreshold};
+    case 'USER_SETTINGS_DISTANCE_THRESHOLD':
+      return {...state, userSettingsDistanceThreshold: action.userSettingsDistanceThreshold};
+    case 'USER_SETTINGS_NOTIFICATION_THRESHOLD':
+      return {...state, userSettingsNotifThreshold: action.userSettingsNotifThreshold};
+
+    case 'ADMIN_SETTINGS_UPVOTE_THRESHOLD':
+      return {...state, adminSettingsUpvoteThreshold: action.adminSettingsUpvoteThreshold};
+    case 'ADMIN_SETTINGS_DISTANCE_THRESHOLD':
+      return {...state, adminSettingsDistanceThreshold: action.adminSettingsDistanceThreshold};
+    case 'ADMIN_SETTINGS_NOTIFICATION_THRESHOLD':
+      return {...state, adminSettingsNotifThreshold: action.adminSettingsNotifThreshold};
+    default:
+      return state;
+  }
+}
+
+
 // function toggleSwitch(state ={}, action) {
 //   switch (action.type) {
 //     case 'SWITCH_ON':
@@ -63,13 +94,14 @@ const appReducer = combineReducers({
   user,
   nav,
   posts,
-  user,
+  settings
 });
 
 const initialState = {
   nav: initialNavState,
   user: null,
   posts: null,
+  settings: {},
 };
 
 export { appReducer, initialState };

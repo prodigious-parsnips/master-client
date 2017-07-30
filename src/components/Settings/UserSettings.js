@@ -6,32 +6,41 @@ export default class UserSettings extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      upvoteThreshold: 0,
-      distanceThreshold: 0,
-      notifThreshold: 0,
-    };
+    // this.state = {
+    //   upvoteThreshold: 0,
+    //   distanceThreshold: 0,
+    //   notifThreshold: 0,
+    // };
   }
+
+  componentDidMount() {
+    console.log('USER SETTINGS!! ', this.props.userSettingsUpvoteThresholdValue)
+  }
+
 
   render() {
     return (
       <ScrollView>
         <Text>UserSettings Component</Text>
         <View style={styles.container}>
-          <Text>Upvote Threshold: {this.state.upvoteThreshold}</Text>
+          <Text>Upvote Threshold: {this.props.userSettingsUpvoteThresholdValue}</Text>
           <Slider style={{width:200}} maximumValue={10} step={1}
-            value={this.state.upvoteThreshold}
-            onValueChange={(upvoteThreshold) => this.setState({upvoteThreshold})} />
+            value={this.props.userSettingsUpvoteThresholdValue}
+            onValueChange={(upvoteThreshold) => this.props.userSettingsUpvoteThreshold(upvoteThreshold)}
+            onSlidingComplete={(upvoteThreshold) => this.props.userSettingsUpvoteThreshold(upvoteThreshold)} />
 
-          <Text>Distance Threshold: {this.state.distanceThreshold}</Text>
+          <Text>Distance Threshold: {this.props.userSettingsDistanceThresholdValue}</Text>
           <Slider style={{width:200}} maximumValue={10} step={1}
-            value={this.state.distanceThreshold}
-            onValueChange={(distanceThreshold) => this.setState({distanceThreshold})} />
+            value={this.props.userSettingsDistanceThresholdValue}
+            onValueChange={(distanceThreshold) => this.props.userSettingsDistanceThreshold(distanceThreshold)}
+            onSlidingComplete={(distanceThreshold) => this.props.userSettingsDistanceThreshold(distanceThreshold)} />
 
-          <Text>Daily Notification Limit: {this.state.notifThreshold}</Text>
+          <Text>Daily Notification Limit: {this.props.userSettingsNotifThresholdValue}</Text>
           <Slider style={{width:200}} maximumValue={10} step={1}
-            value={this.state.notifThreshold}
-            onValueChange={(notifThreshold) => this.setState({notifThreshold})} />
+            value={this.props.userSettingsNotifThresholdValue}
+            onValueChange={(notifThreshold) => this.props.userSettingsNotifThreshold(notifThreshold)} 
+            onSlidingComplete={(notifThreshold) => this.props.userSettingsNotifThreshold(notifThreshold)} />
+
         </View>
       </ScrollView>
     )
