@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, PickerIOS } from 'react-native';
+import { ScrollView, Text, PickerIOS, View } from 'react-native';
 import { connect } from 'react-redux';
 import PostList from './PostList.js';
 import styles from '../styles';

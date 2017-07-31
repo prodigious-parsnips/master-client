@@ -60,3 +60,10 @@ class Root extends React.Component {
 
 
 export { Root, App, store }
+
+
+
+        // <View>
+        //   <SubredditList />
+        //   <AppNavigator />
+        // </View >
