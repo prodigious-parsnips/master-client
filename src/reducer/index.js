@@ -18,9 +18,6 @@ function userPost(state = {}, action) {
   }
 }
 
-<<<<<<< HEAD
-function user(state = {currentSub: 1}, action) {
-=======
 function posts(state = {}, action) {
   switch (action.type) {
     case 'UPDATE_POST_TITLE':
@@ -41,7 +38,6 @@ function posts(state = {}, action) {
 }
 
 function user(state = {currentSub: 6}, action) {
->>>>>>> Implement basic create post and view post screens
   switch (action.type) {
     case 'AUTHORIZE':
       return {...state, userId: action.userId};
