@@ -80,11 +80,7 @@ const appReducer = combineReducers({
   user,
   nav,
   posts,
-<<<<<<< HEAD
-  user,
-=======
   userPost,
->>>>>>> Implement basic create post and view post screens
 });
 
 const initialState = {
