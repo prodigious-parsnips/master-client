@@ -1,6 +1,23 @@
 import { combineReducers } from 'redux';
 import { nav, initialNavState } from '../Navigators.js';
 
+function userPost(state = {}, action) {
+  switch (action.type) {
+    case 'UPDATE_POST_TITLE':
+      return {...state, title: action.title};
+    case 'UPDATE_POST_TEXT':
+      return {...state, text: action.text};
+    case 'SUBMITTING_POST':
+      return state;
+    case 'SUBMITTED_POST':
+      return state;
+    case 'SUBMISSION_FAILED':
+      console.log(action.err);
+    default:
+      return state;
+  }
+}
+
 function posts(state = {}, action) {
   switch (action.type) {
     case 'FETCH_POSTS_REQUEST':
@@ -10,13 +27,13 @@ function posts(state = {}, action) {
     case 'FETCH_POSTS_FAILURE':
       console.log(action.err);
     case 'SELECT_POST':
-      console.log('postId: ', action.id);
+      return {...state, currentPost: action.post}
     default:
       return state;
   }
 }
 
-function user(state = {currentSub: 4}, action) {
+function user(state = {currentSub: 6}, action) {
   switch (action.type) {
     case 'AUTHORIZE':
       return {...state, userId: action.userId};
@@ -63,13 +80,18 @@ const appReducer = combineReducers({
   user,
   nav,
   posts,
+<<<<<<< HEAD
   user,
+=======
+  userPost,
+>>>>>>> Implement basic create post and view post screens
 });
 
 const initialState = {
   nav: initialNavState,
   user: null,
   posts: null,
+  userPost: null,
 };
 
 export { appReducer, initialState };

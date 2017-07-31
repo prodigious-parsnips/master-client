@@ -5,6 +5,10 @@ import PostList from './PostList.js';
 import styles from '../styles';
 
 class SubbedMap extends React.Component {
+  constructor(props) {
+    super(props);
+    this.viewPost = this.viewPost.bind(this);
+  }
 
   componentDidMount() {
     this.fetchMessages();
@@ -16,7 +20,11 @@ class SubbedMap extends React.Component {
     }
   }
 
-  //
+  viewPost(post) {
+    this.props.selectPost(post);
+    this.props.navigation.navigate('PostView');
+  }
+
   fetchMessages() {
     this.props.loadPosts();
     fetch(`http://localhost:3000/api/messages?subredditId=${this.props.currentSub}`)
@@ -38,7 +46,7 @@ class SubbedMap extends React.Component {
           >
           {this.props.userData ? this.props.userData.subreddits.map(el => (<PickerIOS.Item key={el.id} value={el.id} label={el.title} />)): null}
         </PickerIOS>
-        <PostList messages={this.props.posts} selectPost={this.props.selectPost}/>
+        <PostList messages={this.props.posts} selectPost={this.viewPost}/>
       </ScrollView>
     );
   }
@@ -55,7 +63,7 @@ const mapStateToProps = store => (
 const mapDispatchToProps = dispatch => {
   return ({
     selectSub: (itemValue) => dispatch({type: 'SELECT_SUB', itemValue: itemValue}),
-    selectPost: postId => dispatch({type: 'SELECT_POST', id: postId}),
+    selectPost: post => dispatch({type: 'SELECT_POST', post: post}),
     loadPosts: () => dispatch({type: 'FETCH_POSTS_REQUEST'}),
     updatePosts: posts => dispatch({type: 'FETCH_POSTS_SUCCESS', posts: posts}),
     timeoutPosts: err => dispatch({type: 'FETCH_POSTS_FAILURE', err: err})

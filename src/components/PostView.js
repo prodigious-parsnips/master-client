@@ -3,11 +3,21 @@ import { ScrollView, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 class PostView extends React.Component {
+
+  findPost() {
+
+  }
+
+  componentDidMount() {
+
+  }
+
   render() {
     return (
       <ScrollView>
         <Text>PostView</Text>
-        <Text>{JSON.stringify(this.props, null, 2)}</Text>
+        <Text>{this.props.posts.currentPost.title}</Text>
+        <Text>{this.props.posts.currentPost.text}</Text>
       </ScrollView>
     );
   }
@@ -16,7 +26,7 @@ class PostView extends React.Component {
 const mapStateToProps = store => store;
 const mapDispatchToProps = dispatch => {
   return ({
-    
+
   });
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PostView);
