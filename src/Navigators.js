@@ -1,6 +1,5 @@
 import React from 'react';
-import { Button } from 'react-native'
-import { ScrollView, View } from 'react-native';
+import { ScrollView, FlatList, TouchableOpacity, Text } from 'react-native';
 import { DrawerNavigator, StackNavigator, DrawerItems } from 'react-navigation';
 import { connect } from 'react-redux';
 import { store } from './';
@@ -9,36 +8,39 @@ import SubbedMap from './components/SubbedMap.js';
 import MapList from './components/MapList';
 import SignIn from './components/SignIn.js';
 import PostView from './components/PostView.js';
+import CreatePost from './components/CreatePost.js';
 import { getDrawerHeader } from './components/NavBar.js';
 
-const DynamicDrawer = (props) => {
-  console.log('this is props in dynamic drawer ', props)
-  return(
-    <ScrollView >
-      <DrawerItems {...props} />
-    </ScrollView>
-  );
-}
+const DynamicDrawer = (props) =>
+{
+return (
 
+  <ScrollView >
+    <DrawerItems {...props} />
+  </ScrollView>
+);
+}
 const Drawer = DrawerNavigator({
   Home: {screen: SubbedMap},
   Test: {screen: TestScreen},
-  Account: {screen: SignIn},
+  Account: {screen: SignIn}
   Maps: {screen: MapList}
 }, {contentComponent: DynamicDrawer});
 
-Drawer.navigationOptions = ({ navigation }) => {
+Drawer.navigationOptions = (props) => {
   return {
     title: 'HereNow',
     headerStyle: {backgroundColor: 'rgba(0, 124, 220, 100)'},
     headerTitleStyle: {color: 'white'},
     headerTintColor: 'white',
-    headerLeft: getDrawerHeader(navigation),
+    headerLeft: getDrawerHeader(props),
   }
 }
 
 const AppNavigator = StackNavigator({
   Drawer: {screen: Drawer},
+  PostView: {screen: PostView},
+  CreatePost: {screen: CreatePost},
   PostView: {screen: PostView},
   Posts: {screen: TestScreen},
 });

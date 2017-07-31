@@ -18,19 +18,25 @@ class NavBarItem extends Component {
 
 export default NavBarItem;
 
-const getDrawerHeader = navigation => (
+const getDrawerHeader = props => (
   <View style={styles.row}>
     <NavBarItem
       iconName="bars"
       onPress={() => {
-        if (navigation.state.index === 0) {
-          navigation.navigate('DrawerOpen');
+        if (props.navigation.state.index === 0) {
+          props.navigation.navigate('DrawerOpen');
         } else {
-          navigation.navigate('DrawerClose');
+          props.navigation.navigate('DrawerClose');
         }
       }}
     />
-    {navigation.state.index === 0 && <Switch />}
+  {props.navigation.state.index === 0 && <Switch />}
+    {props.navigation.state.index === 0 && <NavBarItem
+      iconName="plus"
+      onPress={() => {
+        props.navigation.navigate('CreatePost');
+      }}
+      />}
   </View>
 );
 
