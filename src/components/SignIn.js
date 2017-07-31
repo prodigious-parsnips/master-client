@@ -117,6 +117,11 @@ class SignIn extends React.Component {
   }
 }
 
+
+
+  
+
+
 const mapDispatchToProps = (dispatch) => {
   return {
     handleSignUp: (credentials, navigate)=>{ 
@@ -138,7 +143,13 @@ const mapDispatchToProps = (dispatch) => {
           return;
         }
         dispatch({type: 'AUTHORIZE', userId: data.id})
-        navigate('Home')
+        fetch(`http://localhost:3000/api/user?id=${data.id}`)
+        .then(res => res.json())
+        .then(data => {
+          dispatch({type: 'FETCH_USER_DATA_SUCCESS', userData: data});
+          navigate('Home')
+        })
+        .catch(err => store.dispatch({type: 'FETCH_USER_DATA_FAILURE'}));
       })
       .catch(err => {
         console.log('this is the err ', err)
@@ -164,7 +175,13 @@ const mapDispatchToProps = (dispatch) => {
           return;
         }
         dispatch({type: 'AUTHORIZE', userId: data.id})
-        navigate('Home')
+        fetch(`http://localhost:3000/api/user?id=${data.id}`)
+        .then(res => res.json())
+        .then(data => {
+          dispatch({type: 'FETCH_USER_DATA_SUCCESS', userData: data});
+          navigate('Home')
+        })
+        .catch(err => store.dispatch({type: 'FETCH_USER_DATA_FAILURE'}));
       })
       .catch(err => {
         console.log('this is the err ', err)
