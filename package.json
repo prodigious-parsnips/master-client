@@ -7,12 +7,14 @@
 		"test": "jest"
 	},
 	"dependencies": {
+		"faker": "^4.1.0",
 		"native-base": "^2.3.0",
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.46.3",
 		"react-native-collapsible": "^0.8.1",
 		"react-native-elements": "^0.15.0",
 		"react-native-push-notification": "^3.0.0",
+		"react-native-statusbar-alert": "^0.2.0",
 		"react-native-vector-icons": "^4.2.0",
 		"react-navigation": "^1.0.0-beta.11",
 		"react-redux": "^5.0.5",

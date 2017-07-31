@@ -1,58 +1,63 @@
 import React from 'react';
-import { ScrollView, Text, StyleSheet } from 'react-native';
+import { ScrollView, Text, PickerIOS, View } from 'react-native';
 import { connect } from 'react-redux';
 import PostList from './PostList.js';
 import styles from '../styles';
+import SubredditList from './MapList';
 
 class SubbedMap extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  //
-  // componentDidUpdate(pProps, pState) {
-  //   if (this.getSubId() !== pState.currentSub) {
-  //     this.setState({currentSub: this.getSubId()}, this.fetchMessages);
-  //   }
-  // }
-  //
+
   componentDidMount() {
     this.fetchMessages();
   }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.currentSub !== this.props.currentSub){
+      this.fetchMessages();
+    }
+  }
+
   //
   fetchMessages() {
     this.props.loadPosts();
-    var defaultSubId = this.props.subs.list ? this.props.subs.list[0].id : 1;
-
-    //because the sample data maps weird, default will be overwritten to a sub with sample posts
-    defaultSubId = 4;
-
-    console.log('\nTHIS IS PROPS IN SubbedMap\n'+ JSON.stringify(this.props, null, 2));
-    fetch(`http://localhost:3000/api/messages?subredditId=${defaultSubId}`)
+    fetch(`http://localhost:3000/api/messages?subredditId=${this.props.currentSub}`)
     .then(response => response.json())
     .then(data => {
       this.props.updatePosts(data);
     })
     .catch(err => console.log(err));
   }
-  // 
-  // selectPost() {
-  //   console.log('thisIs');
-  //   //this.props.selectPost(id)
-  // }
 
   render() {
     return (
+      <View>
       <ScrollView style={styles.app}>
-        <PostList messages={this.props.posts.list} selectPost={this.props.selectPost}/>
+        <PickerIOS
+          selectedValue={this.props.currentSub}
+          onValueChange={(subId) => {
+            this.props.selectSub(subId);
+          }}
+          >
+          {this.props.userData ? this.props.userData.subreddits.map(el => (<PickerIOS.Item key={el.id} value={el.id} label={el.title} />)): null}
+        </PickerIOS>
+        <PostList messages={this.props.posts} selectPost={this.props.selectPost}/>
       </ScrollView>
+      </View>
     );
   }
 }
-// <Text>{JSON.stringify(this.props, null, 2)}</Text>
 
-const mapStateToProps = store => store;
+const mapStateToProps = store => (
+  {
+  nav: store.nav,
+  userData: store.user.userData,
+  posts: store.posts.postList,
+  currentSub: store.user.currentSub,
+  }
+);
 const mapDispatchToProps = dispatch => {
   return ({
+    selectSub: (itemValue) => dispatch({type: 'SELECT_SUB', itemValue: itemValue}),
     selectPost: postId => dispatch({type: 'SELECT_POST', id: postId}),
     loadPosts: () => dispatch({type: 'FETCH_POSTS_REQUEST'}),
     updatePosts: posts => dispatch({type: 'FETCH_POSTS_SUCCESS', posts: posts}),

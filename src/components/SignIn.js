@@ -3,6 +3,7 @@ import { StyleSheet, Text, ScrollView, View, TextInput, Alert } from 'react-nati
 import { Button } from 'react-native-elements';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { connect } from 'react-redux';
+import StatusBarAlert from 'react-native-statusbar-alert'
 
 // https://github.com/oblador/react-native-vector-icons#installation
 
@@ -18,12 +19,13 @@ class SignIn extends React.Component {
       signUp: {
         username: null,
         password: null
-      }
+      },
+      statusBarVisible: false
     }
   }
 
   handleTextChange(text, type){
-    console.log('this is type ', type)
+    // console.log('this is type ', type)
     switch (type) {
       case 'signInUsername':
         this.setState((state)=>{
@@ -61,6 +63,12 @@ class SignIn extends React.Component {
   render() { 
     return (
       <Container>
+      <StatusBarAlert
+        visible={this.state.statusBarVisible}
+        message="Authentication succesful!"
+        backgroundColor="#3CC29E"
+        color="white"
+      />
         
       <Header hasTabs />
 
@@ -79,7 +87,7 @@ class SignIn extends React.Component {
               <Button
                 raised iconRight icon={{name: 'person'}}
                 title='Sign Into HereNow' buttonStyle={styles.button}
-                onPress={()=>{this.props.handleSignIn(this.state.signIn)}}
+                onPress={()=>{this.props.handleSignIn(this.state.signIn, this.props.navigation.navigate)}}
               />
             </View>
           </Tab>
@@ -97,7 +105,7 @@ class SignIn extends React.Component {
               <Button
                 raised iconRight icon={{name: 'person-add'}}
                 title='Sign Up For HereNow' buttonStyle={styles.button}
-                onPress={()=>{this.props.handleSignUp(this.state.signUp)}}
+                onPress={()=>{this.props.handleSignUp(this.state.signUp, this.props.navigation.navigate)}}
               />
             </View>
           </Tab>
@@ -111,7 +119,7 @@ class SignIn extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSignUp: (credentials)=>{ 
+    handleSignUp: (credentials, navigate)=>{ 
       fetch('http://localhost:3000/signup', {
         method: 'POST',
         headers: {
@@ -129,16 +137,15 @@ const mapDispatchToProps = (dispatch) => {
           Alert.alert('Error', 'User Already exists!');
           return;
         }
-        console.log('the then is firing!')
         dispatch({type: 'AUTHORIZE', userId: data.id})
-        //this.setState({userId: data.id}, ()=>{console.log('this is the state after set ', this.state)})
+        navigate('Home')
       })
       .catch(err => {
-        console.log(err);
+        console.log('this is the err ', err)
+        Alert.alert('Error', 'There has been a server error');
       })
     },  
-    handleSignIn: (credentials)=>{
-      console.log('these are the credentials!!! ', credentials)
+    handleSignIn: (credentials, navigate)=>{
       fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
@@ -156,22 +163,24 @@ const mapDispatchToProps = (dispatch) => {
           Alert.alert('Error', 'Incorrect Username or Password');
           return;
         }
-        console.log('the then is firing!')
         dispatch({type: 'AUTHORIZE', userId: data.id})
-        //this.setState({userId: data.id}, ()=>{console.log('this is the state after set ', this.state)})
+        navigate('Home')
       })
       .catch(err => {
-        console.log('catch is firigin!')
-        // console.log(err);
+        console.log('this is the err ', err)
+        Alert.alert('Error', 'There has been a server error');
 
       })
     },
   };
+}
 
+const mapStateToProps = (state)=>{
+  return state.nav;
 }
 
 
-export default connect(()=>{return {}}, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
 
 
 const styles = StyleSheet.create({
