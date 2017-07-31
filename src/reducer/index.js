@@ -18,7 +18,30 @@ function userPost(state = {}, action) {
   }
 }
 
+<<<<<<< HEAD
 function user(state = {currentSub: 1}, action) {
+=======
+function posts(state = {}, action) {
+  switch (action.type) {
+    case 'UPDATE_POST_TITLE':
+      return {...state, title: action.title};
+    case 'UPDATE_POST_TEXT':
+      return {...state, text: action.text};
+    case 'SUBMITTING_POST':
+      return state;
+    case 'SUBMITTED_POST':
+      return state;
+    case 'SUBMISSION_FAILED':
+      console.log(action.err);
+    case 'SELECT_POST':
+      return {...state, currentPost: action.post}
+    default:
+      return state;
+  }
+}
+
+function user(state = {currentSub: 6}, action) {
+>>>>>>> Implement basic create post and view post screens
   switch (action.type) {
     case 'AUTHORIZE':
       return {...state, userId: action.userId};
@@ -101,7 +124,7 @@ const appReducer = combineReducers({
   posts,
   userPost,
   settings,
-  currentUserPreference
+  currentUserPreference,
 });
 
 const initialState = {
