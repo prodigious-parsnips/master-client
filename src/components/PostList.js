@@ -12,7 +12,7 @@ export default PostList = (props) => {
       }
     }
       renderItem={({item}) => (
-        <TouchableOpacity style={styles.container} onPress={() => props.selectPost(item.id)}>
+        <TouchableOpacity style={styles.container} onPress={() => props.selectPost(item)}>
           <PostPreview title={item.title}/>
         </TouchableOpacity>
       )}/>

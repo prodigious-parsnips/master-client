@@ -9,8 +9,8 @@ export default class CreatePosts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      text: '', 
-      title: ''
+      text: '',
+      title: '',
     };
 
     this.sendTextInput = this.sendTextInput.bind(this);
@@ -30,7 +30,7 @@ export default class CreatePosts extends Component {
       title: this.state.title,
       text: this.state.text,
       geotag: '454x, 565y',
-      subId: this.props.screenProps.userData[0].subreddits[0].id    
+      subId: this.props.screenProps.userData[0].subreddits[0].id
     }
 
     fetch("http://localhost:3000/api/messages", {
