@@ -28,7 +28,7 @@ class App extends React.Component {
   render() {
     return (
         <AppNavigator />
-        );
+      );
   }
 }
 
@@ -61,9 +61,3 @@ class Root extends React.Component {
 
 export { Root, App, store }
 
-
-
-        // <View>
-        //   <SubredditList />
-        //   <AppNavigator />
-        // </View >

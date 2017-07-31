@@ -23,7 +23,7 @@ return (
 const Drawer = DrawerNavigator({
   Home: {screen: SubbedMap},
   Test: {screen: TestScreen},
-  Account: {screen: SignIn}
+  Account: {screen: SignIn},
   Maps: {screen: MapList}
 }, {contentComponent: DynamicDrawer});
 
