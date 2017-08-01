@@ -25,13 +25,13 @@ class CreatePost extends React.Component {
             subId: this.props.user.currentSub,
           }),
         })
-        .then(response => response.json())
-        .then(data => {
-          this.props.submittedPost();
-          this.props.navigation.navigate('Home');
-        })
-        .catch(err => this.props.submissionFailed(err));
+      .then(response => response.json())
+      .then(data => {
+        this.props.submittedPost();
+        this.props.navigation.navigate('Home');
       })
+      .catch(err => this.props.submissionFailed(err));
+    })
   }
 
 
