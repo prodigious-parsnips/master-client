@@ -42,7 +42,7 @@ function user(state = {currentSub: 6}, action) {
       return {...state, currentSub: action.itemValue};
     case 'FETCH_USER_DATA_REQUEST':
       console.log('fetching user data');
-      return {...state};
+      return state;
     case 'FETCH_USER_DATA_SUCCESS':
       return {...state, userData: action.userData};
     case 'FETCH_USER_DATA_FAILURE':
@@ -51,36 +51,38 @@ function user(state = {currentSub: 6}, action) {
       return state;
   }
 }
-// function toggleSwitch(state ={}, action) {
-//   switch (action.type) {
-//     case 'SWITCH_ON':
-//       return {...state, toggleSwitch: true};
-//     case 'SWITCH_OFF':
-//       return {...state, toggleSwitch: false};
-//     case 'TOGGLE':
-//       return {..state, toggleSwitch: !state.toggleSwitch};
-//     default:
-//       return state;
-//   }
-// }
 
-// function subs(state = {}, action) {
-//   switch (action.type) {
-//     case 'SET_COMMENTS':
-//       return {...state, subs: action.subs};
-//     default:
-//       return state;
-//   }
-// }
-
-// store.dispatch({type:'SET_SUBS', subs: ['local', 'main']});
-// store.getState().subs /// === ['local, main']
+function comments(state = {}, action) {
+  switch (action.type) {
+    case 'FETCH_COMMENTS_REQUEST':
+      console.log('fetching comments');
+    case 'FETCH_COMMENTS_SUCCESS':
+      return {...state, commentList: action.commentList}
+    case 'FETCH_COMMENTS_FAILURE':
+      console.log(action.err);
+      return state;
+    case 'SUBMITTING_COMMENT':
+      console.log('submitting comment');
+      return state;
+    case 'SUBMITTED_COMMENT':
+      console.log('comment submitted')
+      return state;
+    case 'COMMENT_SUBMISSION_FAILED':
+      console.log(action.err);
+      return state;
+    case 'UPDATE_COMMENT':
+      return {...state, userComment: action.text};
+    default:
+      return state;
+  }
+}
 
 const appReducer = combineReducers({
   user,
   nav,
   posts,
   userPost,
+  comments,
 });
 
 const initialState = {
@@ -88,6 +90,7 @@ const initialState = {
   user: null,
   posts: null,
   userPost: null,
+  comments: null,
 };
 
 export { appReducer, initialState };

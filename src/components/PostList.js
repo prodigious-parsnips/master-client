@@ -1,10 +1,10 @@
 import React from 'react';
-import { ScrollView, FlatList, Text, TouchableOpacity } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity } from 'react-native';
 import PostPreview from './PostPreview';
 import styles from '../styles';
 export default PostList = (props) => {
   return (
-  <ScrollView>
+  <View>
     <FlatList
       data={props.messages}
       keyExtractor={item => {
@@ -16,7 +16,7 @@ export default PostList = (props) => {
           <PostPreview title={item.title}/>
         </TouchableOpacity>
       )}/>
-  </ScrollView>
+  </View>
 )};
 
 // onPress={() => navigate('Home', {title: this.props.messages.title, text: this.props.messages.text})}

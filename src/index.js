@@ -5,7 +5,7 @@ import TestScreen from './components/TestScreen.js';
 import { AppNavigator } from './Navigators.js';
 import { appReducer, initialState } from './reducer';
 
-const TEMP_USER_ID = 1;
+const TEMP_USER_ID = 2;
 
 class App extends React.Component {
 

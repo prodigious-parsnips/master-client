@@ -23,6 +23,8 @@ class CreatePost extends React.Component {
     .then(response => response.json())
     .then(data => {
       this.props.submittedPost();
+      this.props.updatePostTitle();
+      this.props.updatePostText();
       this.props.navigation.navigate('Home');
     })
     .catch(err => this.props.submissionFailed(err));
@@ -32,8 +34,8 @@ class CreatePost extends React.Component {
   render() {
     return (
       <ScrollView>
-        <TextInput style={styles.title} placeholder="Title" onChangeText={this.props.updatePostTitle} />
-        <TextInput style={styles.message} placeholder="Message" onChangeText={this.props.updatePostText} />
+        <TextInput style={styles.title} value={this.props.userPost.title} placeholder="Title" onChangeText={this.props.updatePostTitle} />
+        <TextInput style={styles.message} value={this.props.userPost.text} placeholder="Message" onChangeText={this.props.updatePostText} />
         <Button title='Submit Post' buttonStyle={styles.button} onPress={this.submitPost} />
       </ScrollView>
     );
