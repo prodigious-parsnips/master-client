@@ -18,7 +18,7 @@ function userPost(state = {}, action) {
   }
 }
 
-function user(state = {currentSub: 6}, action) {
+function user(state = {currentSub: 1}, action) {
   switch (action.type) {
     case 'AUTHORIZE':
       return {...state, userId: action.userId};
@@ -38,7 +38,7 @@ function user(state = {currentSub: 6}, action) {
 }
 
 
-<<<<<<< HEAD
+
 function posts(state = {}, action) {
   switch (action.type) {
     case 'FETCH_POSTS_REQUEST':
@@ -49,7 +49,10 @@ function posts(state = {}, action) {
       console.log(action.err);
     case 'SELECT_POST':
       return {...state, currentPost: action.post}
-=======
+    default:
+      return state;
+  }
+}
 
 function settings(state = {
     userSettingsUpvoteThreshold: 0,
@@ -73,16 +76,12 @@ function settings(state = {
       return {...state, adminSettingsDistanceThreshold: action.adminSettingsDistanceThreshold};
     case 'ADMIN_SETTINGS_NOTIFICATION_THRESHOLD':
       return {...state, adminSettingsNotifThreshold: action.adminSettingsNotifThreshold};
->>>>>>> redux imp for settings(admin and normal):  made userSettings and adminSettings dumb
+
     default:
       return state;
   }
 }
-<<<<<<< HEAD
-=======
 
-
->>>>>>> redux imp for settings(admin and normal):  made userSettings and adminSettings dumb
 // function toggleSwitch(state ={}, action) {
 //   switch (action.type) {
 //     case 'SWITCH_ON':
