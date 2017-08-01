@@ -46,7 +46,7 @@ function user(state = {currentSub: 6}, action) {
       return {...state, currentSub: action.itemValue};
     case 'FETCH_USER_DATA_REQUEST':
       console.log('fetching user data');
-      return {...state};
+      return state;
     case 'FETCH_USER_DATA_SUCCESS':
       return {...state, userData: action.userData};
     case 'FETCH_USER_DATA_FAILURE':
@@ -108,6 +108,31 @@ function settings(state = {
       return {...state, adminSettingsTitle: action.adminSettingsTitle};
     case 'ADMIN_SETTINGS_DESCRIPTION':
       return {...state, adminSettingsDescription: action.adminSettingsDescription};
+      default:
+        return state;
+    }
+  }
+
+function comments(state = {}, action) {
+  switch (action.type) {
+    case 'FETCH_COMMENTS_REQUEST':
+      console.log('fetching comments');
+    case 'FETCH_COMMENTS_SUCCESS':
+      return {...state, commentList: action.commentList}
+    case 'FETCH_COMMENTS_FAILURE':
+      console.log(action.err);
+      return state;
+    case 'SUBMITTING_COMMENT':
+      console.log('submitting comment');
+      return state;
+    case 'SUBMITTED_COMMENT':
+      console.log('comment submitted')
+      return state;
+    case 'COMMENT_SUBMISSION_FAILED':
+      console.log(action.err);
+      return state;
+    case 'UPDATE_COMMENT':
+      return {...state, userComment: action.text};
 
     default:
       return state;
@@ -121,6 +146,7 @@ const appReducer = combineReducers({
   userPost,
   settings,
   currentUserPreference,
+  comments,
 });
 
 const initialState = {
@@ -129,7 +155,8 @@ const initialState = {
   posts: null,
   userPost: null,
   settings: {},
-  currentUserPreference: null
+  currentUserPreference: null,
+  comments: null,
 };
 
 export { appReducer, initialState };
