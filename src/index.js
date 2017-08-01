@@ -5,6 +5,7 @@ import { connect, Provider } from 'react-redux';
 import TestScreen from './components/TestScreen.js';
 import { AppNavigator } from './Navigators.js';
 import { appReducer, initialState } from './reducer';
+import PushNotification from 'react-native-push-notification';
 
 const TEMP_USER_ID = 1;
 
@@ -12,6 +13,9 @@ class App extends React.Component {
 
   componentDidMount() {
     this.fetchUserData();
+    this.getPermissionForNotifications();
+    navigator.geolocation.requestAuthorization();
+    this.testPush();
   }
 
   fetchUserData() {
@@ -23,6 +27,34 @@ class App extends React.Component {
       store.dispatch({type: 'FETCH_USER_DATA_SUCCESS', userData: data});
     })
     .catch(err => store.dispatch({type: 'FETCH_USER_DATA_FAILURE'}));
+  }
+
+  getPermissionForNotifications(){
+    PushNotification.configure({
+      // (required) Called when a remote or local notification is opened or received
+      onNotification: function(notification) {
+          console.log( 'NOTIFICATION:', notification );
+      },
+      // IOS ONLY (optional): default: all - Permissions to register.
+      permissions: {
+          alert: true,
+          badge: true,
+          sound: true
+      },
+      // Should the initial notification be popped automatically
+      // default: true
+      popInitialNotification: true,
+
+      requestPermissions: true,
+    });
+  }
+
+  testPush() { 
+    PushNotification.localNotificationSchedule({
+      message: "HereNow Notification Message", // (required)
+      number: 1,
+      date: new Date(Date.now() + (10 * 1000)) // in 3 secs
+    });     
   }
 
   render() {

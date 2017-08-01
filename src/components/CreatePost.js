@@ -1,6 +1,8 @@
 import React from 'react';
 import { ScrollView, Text, Button, StyleSheet, TextInput } from 'react-native';
 import { connect } from 'react-redux';
+import Promise from 'bluebird';
+Promise.promisifyAll(navigator.geolocation);
 
 class CreatePost extends React.Component {
   constructor(props) {
@@ -9,23 +11,27 @@ class CreatePost extends React.Component {
   }
   submitPost() {
     this.props.submittingPost();
-    fetch("http://localhost:3000/api/messages", {
-      method: "POST",
-      headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        userId: this.props.user.id,
-        title: this.props.userPost.title,
-        text: this.props.userPost.text,
-        geotag: 'Unknown',
-        subId: this.props.user.currentSub,
-      }),
-    })
-    .then(response => response.json())
-    .then(data => {
-      this.props.submittedPost();
-      this.props.navigation.navigate('Home');
-    })
-    .catch(err => this.props.submissionFailed(err));
+    //get the geo location here and save as a variable
+    navigator.geolocation.getCurrentPositionAsync()
+    .catch((position)=>{
+      fetch("http://localhost:3000/api/messages", {
+          method: "POST",
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            userId: this.props.user.id,
+            title: this.props.userPost.title,
+            text: this.props.userPost.text,
+            geotag: position.coords,
+            subId: this.props.user.currentSub,
+          }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          this.props.submittedPost();
+          this.props.navigation.navigate('Home');
+        })
+        .catch(err => this.props.submissionFailed(err));
+      })
   }
 
 
