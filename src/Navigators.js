@@ -11,15 +11,14 @@ import PostView from './components/PostView.js';
 import CreatePost from './components/CreatePost.js';
 import { getDrawerHeader } from './components/NavBar.js';
 
-const DynamicDrawer = (props) =>
-{
-return (
-
-  <ScrollView >
-    <DrawerItems {...props} />
-  </ScrollView>
-);
+const DynamicDrawer = (props) => {
+  return (
+    <ScrollView >
+      <DrawerItems {...props} />
+    </ScrollView>
+  );
 }
+
 const Drawer = DrawerNavigator({
   Home: {screen: SubbedMap},
   Test: {screen: TestScreen},

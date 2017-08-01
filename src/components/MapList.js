@@ -18,35 +18,41 @@ const styles = StyleSheet.create({
 class MapList extends React.Component {
   constructor(props) {
     super(props);
+    console.log('this is props in map list! ', props)
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(['1', '2', '3', '4', '5', '6']),
+      dataSource: ds.cloneWithRows(props.userData.subreddits),
     };
   }
   render() {
-    console.log('this is the props in map list ', this.props)
     return (
       <View style={styles.container}>
         <Text style ={styles.text}>Select a Map</Text>
           <ListView
             style={styles.container}
             dataSource={this.state.dataSource}
-            renderRow={() => <Row onClick={this.onMapClick.bind(this)}/>}
+            renderRow={(data, rowid, sectionid) => <Row sectionid={sectionid} mapData={data} onClick={this.onMapClick.bind(this)}/>}
           />
       </View>
     );
   }
-  onMapClick(){
+  onMapClick(value){
+    this.props.dispatch({type: 'SELECT_SUB', itemValue: value.mapData.id})
     this.props.navigation.navigate('Home')
   }
 }
 
-const mapDispatchToProps = ()=>{
-  return {};
+const mapDispatchToProps = (dispatch)=>{
+  return {dispatch: dispatch};
 }
 
-const mapStateToProps = (state)=>{
-  return state.nav;
+const mapStateToProps = (store)=>{
+  return {
+  nav: store.nav,
+  userData: store.user.userData,
+  posts: store.posts.postList,
+  currentSub: store.user.currentSub,
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapList);

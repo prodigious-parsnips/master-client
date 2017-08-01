@@ -40,14 +40,6 @@ class SubbedMap extends React.Component {
     return (
       <View>
       <ScrollView style={styles.app}>
-        <PickerIOS
-          selectedValue={this.props.currentSub}
-          onValueChange={(subId) => {
-            this.props.selectSub(subId);
-          }}
-          >
-          {this.props.userData ? this.props.userData.subreddits.map(el => (<PickerIOS.Item key={el.id} value={el.id} label={el.title} />)): null}
-        </PickerIOS>
         <PostList messages={this.props.posts} selectPost={this.viewPost}/>
       </ScrollView>
       </View>
@@ -65,7 +57,10 @@ const mapStateToProps = store => (
 );
 const mapDispatchToProps = dispatch => {
   return ({
-    selectSub: (itemValue) => dispatch({type: 'SELECT_SUB', itemValue: itemValue}),
+    selectSub: (itemValue) => {
+      console.log('this is item valuel in selectSub ', itemValue);
+      dispatch({type: 'SELECT_SUB', itemValue: itemValue})
+    },
     selectPost: post => dispatch({type: 'SELECT_POST', post: post}),
     loadPosts: () => dispatch({type: 'FETCH_POSTS_REQUEST'}),
     updatePosts: posts => dispatch({type: 'FETCH_POSTS_SUCCESS', posts: posts}),
@@ -74,3 +69,13 @@ const mapDispatchToProps = dispatch => {
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SubbedMap);
 // <PostList navigation={this.props.navigation} messages={this.state.messages}/>
+
+
+// <PickerIOS
+//    selectedValue={this.props.currentSub}
+//    onValueChange={(subId) => {
+//      this.props.selectSub(subId);
+//    }}
+//    >
+//    {this.props.userData ? this.props.userData.subreddits.map(el => (<PickerIOS.Item key={el.id} value={el.id} label={el.title} />)): null}
+//  </PickerIOS>

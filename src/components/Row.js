@@ -21,12 +21,13 @@ const styles = StyleSheet.create({
 });
 
 const Row = (props) => {
+  console.log('this is the props in row ', props)
   return (
-    <TouchableHighlight style={styles.container} onPress = { () => {props.onClick()} }>
+    <TouchableHighlight style={styles.container} onPress = { () => {props.onClick(props)} }>
     <View style={styles.container}>
       <Image source={{ uri: faker.internet.avatar()}} style={styles.photo} />
       <Text style={styles.text}>
-        {faker.company.bs()}
+        {props.mapData.title}
       </Text>
     </View>
     </TouchableHighlight>
