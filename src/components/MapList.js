@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Row from './Row';
+import MapRow from './MapRow';
 import { View, ListView, StyleSheet, Text, TouchableHighlight} from 'react-native';
 import { connect } from 'react-redux';
 
@@ -31,7 +31,7 @@ class MapList extends React.Component {
           <ListView
             style={styles.container}
             dataSource={this.state.dataSource}
-            renderRow={(data, rowid, sectionid) => <Row sectionid={sectionid} mapData={data} onClick={this.onMapClick.bind(this)}/>}
+            renderRow={(data, rowid, sectionid) => <MapRow sectionid={sectionid} mapData={data} onClick={this.onMapClick.bind(this)}/>}
           />
       </View>
     );

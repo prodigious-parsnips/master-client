@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Row = (props) => {
+const MapRow = (props) => {
   console.log('this is the props in row ', props)
   return (
     <TouchableHighlight style={styles.container} onPress = { () => {props.onClick(props)} }>
@@ -34,4 +34,4 @@ const Row = (props) => {
   );
 }
 
-export default Row;
+export default MapRow;
