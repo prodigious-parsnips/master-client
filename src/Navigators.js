@@ -9,6 +9,7 @@ import MapList from './components/MapList';
 import SignIn from './components/SignIn.js';
 import PostView from './components/PostView.js';
 import CreatePost from './components/CreatePost.js';
+import Settings from './components/Settings/Settings.js'
 import { getDrawerHeader } from './components/NavBar.js';
 
 const DynamicDrawer = (props) => {
@@ -21,6 +22,7 @@ const DynamicDrawer = (props) => {
 
 const Drawer = DrawerNavigator({
   Home: {screen: SubbedMap},
+  Settings: {screen: Settings},
   Test: {screen: TestScreen},
   Account: {screen: SignIn},
   Maps: {screen: MapList}
