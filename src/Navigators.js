@@ -5,24 +5,25 @@ import { connect } from 'react-redux';
 import { store } from './';
 import TestScreen from './components/TestScreen.js';
 import SubbedMap from './components/SubbedMap.js';
+import MapList from './components/MapList';
 import SignIn from './components/SignIn.js';
 import PostView from './components/PostView.js';
 import CreatePost from './components/CreatePost.js';
 import { getDrawerHeader } from './components/NavBar.js';
 
-const DynamicDrawer = (props) =>
-{
-return (
-
-  <ScrollView >
-    <DrawerItems {...props} />
-  </ScrollView>
-);
+const DynamicDrawer = (props) => {
+  return (
+    <ScrollView >
+      <DrawerItems {...props} />
+    </ScrollView>
+  );
 }
+
 const Drawer = DrawerNavigator({
   Home: {screen: SubbedMap},
   Test: {screen: TestScreen},
-  Account: {screen: SignIn}
+  Account: {screen: SignIn},
+  Maps: {screen: MapList}
 }, {contentComponent: DynamicDrawer});
 
 Drawer.navigationOptions = (props) => {

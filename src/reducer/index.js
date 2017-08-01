@@ -18,21 +18,6 @@ function userPost(state = {}, action) {
   }
 }
 
-function posts(state = {}, action) {
-  switch (action.type) {
-    case 'FETCH_POSTS_REQUEST':
-      return {...state, postList: [{title: 'Loading...'}]};
-    case 'FETCH_POSTS_SUCCESS':
-      return {...state, postList: action.posts};
-    case 'FETCH_POSTS_FAILURE':
-      console.log(action.err);
-    case 'SELECT_POST':
-      return {...state, currentPost: action.post}
-    default:
-      return state;
-  }
-}
-
 function user(state = {currentSub: 6}, action) {
   switch (action.type) {
     case 'AUTHORIZE':
@@ -47,6 +32,22 @@ function user(state = {currentSub: 6}, action) {
       return {...state, userData: action.userData};
     case 'FETCH_USER_DATA_FAILURE':
       console.log(action.err);
+    default:
+      return state;
+  }
+}
+
+
+function posts(state = {}, action) {
+  switch (action.type) {
+    case 'FETCH_POSTS_REQUEST':
+      return {...state, postList: [{title: 'Loading...'}]};
+    case 'FETCH_POSTS_SUCCESS':
+      return {...state, postList: action.posts};
+    case 'FETCH_POSTS_FAILURE':
+      console.log(action.err);
+    case 'SELECT_POST':
+      return {...state, currentPost: action.post}
     default:
       return state;
   }

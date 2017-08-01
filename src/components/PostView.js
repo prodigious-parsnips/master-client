@@ -26,7 +26,6 @@ class PostView extends React.Component {
 const mapStateToProps = store => store;
 const mapDispatchToProps = dispatch => {
   return ({
-
   });
 };
 export default connect(mapStateToProps, mapDispatchToProps)(PostView);
