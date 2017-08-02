@@ -27,16 +27,21 @@ class Settings extends React.Component {
   }
 
   renderAdminSettings(section) {
-    console.log("inside of renderAdminSettings", this.props);
+    // console.log("inside of renderAdminSettings", this.props);
     return (
       <View>
-        <AdminSettings 
+        <AdminSettings
           adminSettingsUpvoteThreshold={this.props.adminSettingsUpvoteThreshold}
           adminSettingsUpvoteThresholdValue={this.props.adminSettingsUpvoteThresholdValue}
           adminSettingsDistanceThreshold={this.props.adminSettingsDistanceThreshold}
           adminSettingsDistanceThresholdValue={this.props.adminSettingsDistanceThresholdValue}
           adminSettingsNotifThreshold={this.props.adminSettingsNotifThreshold}
           adminSettingsNotifThresholdValue={this.props.adminSettingsNotifThresholdValue}
+          userId={this.props.userId}
+          adminSettingsTitle={this.props.adminSettingsTitle}
+          adminSettingsDescription={this.props.adminSettingsDescription}
+          adminSettingsTitleText={this.props.adminTitle}
+          adminSettingsDescriptionText={this.props.adminDescription}
         />
       </View>
     );
@@ -45,13 +50,14 @@ class Settings extends React.Component {
   renderUserSettings(section) {
     return (
       <View>
-        <UserSettings 
+        <UserSettings
           userSettingsUpvoteThreshold={this.props.userSettingsUpvoteThreshold}
           userSettingsUpvoteThresholdValue={this.props.userSettingsUpvoteThresholdValue}
           userSettingsDistanceThreshold={this.props.userSettingsDistanceThreshold}
           userSettingsDistanceThresholdValue={this.props.userSettingsDistanceThresholdValue}
           userSettingsNotifThreshold={this.props.userSettingsNotifThreshold}
           userSettingsNotifThresholdValue={this.props.userSettingsNotifThresholdValue}
+          userId={this.props.userId}
         />
       </View>
     );
@@ -91,6 +97,9 @@ const mapStateToProps = (state) => {
     adminSettingsUpvoteThresholdValue: state.settings.adminSettingsUpvoteThreshold,
     adminSettingsDistanceThresholdValue: state.settings.adminSettingsDistanceThreshold,
     adminSettingsNotifThresholdValue: state.settings.adminSettingsNotifThreshold,
+    userId: state.user.userData.id,
+    adminTitle: state.settings.adminSettingsTitle,
+    adminDescription: state.settings.adminSettingsDescription
   })
 }
 
@@ -137,6 +146,22 @@ const mapDispatchToProps = (dispatch) => {
       const action = {
         type: "ADMIN_SETTINGS_NOTIFICATION_THRESHOLD",
         adminSettingsNotifThreshold: val
+      }
+      dispatch(action)
+    },
+    adminSettingsTitle: (val = '') => {
+      console.log('ADMIN SETTINGS TITLE VAL ', val)
+      const action = {
+        type: "ADMIN_SETTINGS_TITLE",
+        adminSettingsTitle: val
+      }
+      dispatch(action)
+    },
+    adminSettingsDescription: (val = '') => {
+      console.log('ADMIN SETTINGS Description VAL ', val)
+      const action = {
+        type: "ADMIN_SETTINGS_DESCRIPTION",
+        adminSettingsDescription: val
       }
       dispatch(action)
     },

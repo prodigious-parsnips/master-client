@@ -49,12 +49,12 @@ class App extends React.Component {
     });
   }
 
-  testPush() { 
+  testPush() {
     PushNotification.localNotificationSchedule({
       message: "HereNow Notification Message", // (required)
       number: 1,
       date: new Date(Date.now() + (10 * 1000)) // in 3 secs
-    });     
+    });
   }
 
   render() {
@@ -94,4 +94,3 @@ class Root extends React.Component {
 
 
 export { Root, App, store }
-
