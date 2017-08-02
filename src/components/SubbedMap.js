@@ -12,6 +12,12 @@ class SubbedMap extends React.Component {
     this.props.like = this.props.like.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+  if (prevProps.currentSub !== this.props.currentSub){
+    this.componentDidMount();
+  }
+}
+
   componentDidMount() {
     if (!this.props.currentSub) {
       this.fetchLocal();
@@ -49,7 +55,7 @@ class SubbedMap extends React.Component {
     return (
       <View>
       <ScrollView style={styles.app}>
-        <PostList like={this.props.like} messages={this.props.posts} selectPost={this.viewPost}/>
+        <PostList like={this.props.like} messages={this.props.posts} selectPost={this.viewPost} selectSub={this.props.selectSub} />
       </ScrollView>
       </View>
     );
@@ -66,11 +72,8 @@ const mapStateToProps = store => (
 );
 const mapDispatchToProps = dispatch => {
   return ({
-    selectSub: (itemValue) => {
-      console.log('this is item valuel in selectSub ', itemValue);
-      dispatch({type: 'SELECT_SUB', itemValue: itemValue})
-    },
-    like: (messageId) => dispatch(type: 'LIKE', messageId: messageId ),
+    selectSub: (subId) => dispatch({type: 'SELECT_SUB', itemValue: subId}),
+    like: (postId) => dispatch({type: 'LIKE', postId: postId}),
     selectPost: post => dispatch({type: 'SELECT_POST', post: post}),
     loadPosts: () => dispatch({type: 'FETCH_POSTS_REQUEST'}),
     updatePosts: posts => dispatch({type: 'FETCH_POSTS_SUCCESS', posts: posts}),

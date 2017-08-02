@@ -17,6 +17,7 @@ export default PostList = (props) => {
             <PostPreview title={item.title}/>
           </TouchableOpacity>
           <Button onPress={() => props.like(item.id)} title="Like"/>
+          <Button onPress={() => props.selectSub(item.subreddit_id)} title="Go to map"/>
         </View>
       )}/>
   </View>
