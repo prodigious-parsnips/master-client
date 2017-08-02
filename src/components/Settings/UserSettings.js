@@ -16,6 +16,7 @@ export default class UserSettings extends React.Component {
 
     let form = {
       adminTitle: null,
+      adminDescription: null,
       userPreferenceId: this.props.userId,
       upvoteThreshold: this.props.userSettingsUpvoteThresholdValue,
       locationThreshold: this.props.userSettingsDistanceThresholdValue,

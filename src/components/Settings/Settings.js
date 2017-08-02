@@ -27,7 +27,7 @@ class Settings extends React.Component {
   }
 
   renderAdminSettings(section) {
-    console.log("inside of renderAdminSettings", this.props);
+    // console.log("inside of renderAdminSettings", this.props);
     return (
       <View>
         <AdminSettings
@@ -37,6 +37,11 @@ class Settings extends React.Component {
           adminSettingsDistanceThresholdValue={this.props.adminSettingsDistanceThresholdValue}
           adminSettingsNotifThreshold={this.props.adminSettingsNotifThreshold}
           adminSettingsNotifThresholdValue={this.props.adminSettingsNotifThresholdValue}
+          userId={this.props.userId}
+          adminSettingsTitle={this.props.adminSettingsTitle}
+          adminSettingsDescription={this.props.adminSettingsDescription}
+          adminSettingsTitleText={this.props.adminTitle}
+          adminSettingsDescriptionText={this.props.adminDescription}
         />
       </View>
     );
@@ -93,6 +98,8 @@ const mapStateToProps = (state) => {
     adminSettingsDistanceThresholdValue: state.settings.adminSettingsDistanceThreshold,
     adminSettingsNotifThresholdValue: state.settings.adminSettingsNotifThreshold,
     userId: state.user.userData.id,
+    adminTitle: state.settings.adminSettingsTitle,
+    adminDescription: state.settings.adminSettingsDescription
   })
 }
 
@@ -139,6 +146,22 @@ const mapDispatchToProps = (dispatch) => {
       const action = {
         type: "ADMIN_SETTINGS_NOTIFICATION_THRESHOLD",
         adminSettingsNotifThreshold: val
+      }
+      dispatch(action)
+    },
+    adminSettingsTitle: (val = '') => {
+      console.log('ADMIN SETTINGS TITLE VAL ', val)
+      const action = {
+        type: "ADMIN_SETTINGS_TITLE",
+        adminSettingsTitle: val
+      }
+      dispatch(action)
+    },
+    adminSettingsDescription: (val = '') => {
+      console.log('ADMIN SETTINGS Description VAL ', val)
+      const action = {
+        type: "ADMIN_SETTINGS_DESCRIPTION",
+        adminSettingsDescription: val
       }
       dispatch(action)
     },

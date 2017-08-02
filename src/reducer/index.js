@@ -60,7 +60,9 @@ function settings(state = {
     userSettingsNotifThreshold: 0,
     adminSettingsUpvoteThreshold: 0,
     adminSettingsDistanceThreshold: 0,
-    adminSettingsNotifThreshold: 0 
+    adminSettingsNotifThreshold: 0,
+    adminSettingsTitle: '',
+    adminSettingsDescription: ''
   }, action) {
   switch (action.type) {
     case 'USER_SETTINGS_UPVOTE_THRESHOLD':
@@ -76,35 +78,15 @@ function settings(state = {
       return {...state, adminSettingsDistanceThreshold: action.adminSettingsDistanceThreshold};
     case 'ADMIN_SETTINGS_NOTIFICATION_THRESHOLD':
       return {...state, adminSettingsNotifThreshold: action.adminSettingsNotifThreshold};
+    case 'ADMIN_SETTINGS_TITLE':
+      return {...state, adminSettingsTitle: action.adminSettingsTitle};
+    case 'ADMIN_SETTINGS_DESCRIPTION':
+      return {...state, adminSettingsDescription: action.adminSettingsDescription};
+
     default:
       return state;
   }
 }
-
-// function toggleSwitch(state ={}, action) {
-//   switch (action.type) {
-//     case 'SWITCH_ON':
-//       return {...state, toggleSwitch: true};
-//     case 'SWITCH_OFF':
-//       return {...state, toggleSwitch: false};
-//     case 'TOGGLE':
-//       return {..state, toggleSwitch: !state.toggleSwitch};
-//     default:
-//       return state;
-//   }
-// }
-
-// function subs(state = {}, action) {
-//   switch (action.type) {
-//     case 'SET_COMMENTS':
-//       return {...state, subs: action.subs};
-//     default:
-//       return state;
-//   }
-// }
-
-// store.dispatch({type:'SET_SUBS', subs: ['local', 'main']});
-// store.getState().subs /// === ['local, main']
 
 const appReducer = combineReducers({
   user,
