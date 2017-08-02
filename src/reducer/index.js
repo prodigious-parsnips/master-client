@@ -37,6 +37,16 @@ function user(state = {currentSub: 1}, action) {
   }
 }
 
+function currentUserPreference(state = {}, action) {
+  switch(action.type) {
+    case 'USER_PREFERENCE_UPDATE':
+      return {...state, currentUserPreference: action.currentUserPreference}
+    default:
+      return state;
+  }
+}
+
+
 
 
 function posts(state = {}, action) {
@@ -49,6 +59,33 @@ function posts(state = {}, action) {
       console.log(action.err);
     case 'SELECT_POST':
       return {...state, currentPost: action.post}
+    default:
+      return state;
+    }
+}
+
+function settings(state = {
+    userSettingsUpvoteThreshold: 0,
+    userSettingsDistanceThreshold: 0,
+    userSettingsNotifThreshold: 0,
+    adminSettingsUpvoteThreshold: 0,
+    adminSettingsDistanceThreshold: 0,
+    adminSettingsNotifThreshold: 0
+  }, action) {
+  switch (action.type) {
+    case 'USER_SETTINGS_UPVOTE_THRESHOLD':
+      return {...state, userSettingsUpvoteThreshold: action.userSettingsUpvoteThreshold};
+    case 'USER_SETTINGS_DISTANCE_THRESHOLD':
+      return {...state, userSettingsDistanceThreshold: action.userSettingsDistanceThreshold};
+    case 'USER_SETTINGS_NOTIFICATION_THRESHOLD':
+      return {...state, userSettingsNotifThreshold: action.userSettingsNotifThreshold};
+
+    case 'ADMIN_SETTINGS_UPVOTE_THRESHOLD':
+      return {...state, adminSettingsUpvoteThreshold: action.adminSettingsUpvoteThreshold};
+    case 'ADMIN_SETTINGS_DISTANCE_THRESHOLD':
+      return {...state, adminSettingsDistanceThreshold: action.adminSettingsDistanceThreshold};
+    case 'ADMIN_SETTINGS_NOTIFICATION_THRESHOLD':
+      return {...state, adminSettingsNotifThreshold: action.adminSettingsNotifThreshold};
     default:
       return state;
   }
@@ -93,7 +130,8 @@ const appReducer = combineReducers({
   nav,
   posts,
   userPost,
-  settings
+  settings,
+  currentUserPreference
 });
 
 const initialState = {
@@ -101,7 +139,8 @@ const initialState = {
   user: null,
   posts: null,
   userPost: null,
-  settings: {},
+  settings: null,
+  currentUserPreference: null
 };
 
 export { appReducer, initialState };

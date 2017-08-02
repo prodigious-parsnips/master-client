@@ -67,8 +67,7 @@ export default class UserSettings extends React.Component {
             onValueChange={(notifThreshold) => this.props.userSettingsNotifThreshold(notifThreshold)}
             onSlidingComplete={(notifThreshold) => this.props.userSettingsNotifThreshold(notifThreshold)}
             onSlidingComplete={this.updateUserThresholds}
-          />
-
+            />
         </View>
       </ScrollView>
     )

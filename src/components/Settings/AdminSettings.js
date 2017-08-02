@@ -9,13 +9,6 @@ export default class AdminSettings extends React.Component {
   }
 
   componentDidMount() {
-    // fetch(`http://localhost:3000/api/settings?id=13`)
-    // .then(response => response.json())
-    // .then(data => {
-    //   console.log('AdminSettings componentDidMount!! ',data);
-    //
-    // })
-    // .catch(err => console.log(err));
     console.log('DMIN PROPS ', this.props)
   }
 
@@ -84,6 +77,11 @@ export default class AdminSettings extends React.Component {
             onSlidingComplete={this.updateAdminThresholds}
           />
 
+          <Text>Daily Notification Limit: {this.props.adminSettingsNotifThresholdValue}</Text>
+          <Slider style={{width:200}} maximumValue={10} step={1}
+            value={this.props.adminSettingsNotifThresholdValue}
+            onValueChange={(notifThreshold) => this.props.adminSettingsNotifThreshold(notifThreshold)}
+            onSlidingComplete={(notifThreshold) => this.props.adminSettingsNotifThreshold(notifThreshold)} />
         </View>
       </ScrollView>
     )
