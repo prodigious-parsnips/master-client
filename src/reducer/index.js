@@ -37,6 +37,16 @@ function user(state = {currentSub: 1}, action) {
   }
 }
 
+function currentUserPreference(state = {}, action) {
+  switch(action.type) {
+    case 'USER_PREFERENCE_UPDATE':
+      return {...state, currentUserPreference: action.currentUserPreference}
+    default:
+      return state;
+  }
+}
+
+
 
 
 function posts(state = {}, action) {
@@ -120,7 +130,8 @@ const appReducer = combineReducers({
   nav,
   posts,
   userPost,
-  settings
+  settings,
+  currentUserPreference
 });
 
 const initialState = {
@@ -128,7 +139,8 @@ const initialState = {
   user: null,
   posts: null,
   userPost: null,
-  settings: {},
+  settings: null,
+  currentUserPreference: null
 };
 
 export { appReducer, initialState };

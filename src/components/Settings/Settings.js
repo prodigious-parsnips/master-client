@@ -75,7 +75,7 @@ class Settings extends React.Component {
           <Accordion
             sections={['Section 1']}
             renderHeader={this.renderHeader.bind(this)}
-            renderContent={this.renderUserSettings.bind(this)}
+            renderContent={this.renderUserSettings.bind(this), index, isActive}
           />
         </View>
       </ScrollView>
