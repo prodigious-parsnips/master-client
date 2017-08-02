@@ -18,7 +18,30 @@ function userPost(state = {}, action) {
   }
 }
 
-function user(state = {currentSub: 1}, action) {
+function userMap(state = {}, action) {
+  switch (action.type) {
+    case 'UPDATE_MAP_TITLE':
+      return {...state, title: action.title};
+    case 'UPDATE_MAP_DESCRIPTION':
+      return {...state, description: action.description};
+    case 'UPDATE_UPVOTE_THRESHOLD':
+      return {...state, upvoteThreshold: action.value};
+    case 'UPDATE_DISTANCE_THRESHOLD':
+      return {...state, distanceThreshold: action.value};
+    case 'SUBMITTING_MAP':
+      console.log('submitting map');
+      return state;
+    case 'SUBMITTED_MAP':
+      console.log('map submitted');
+      return state;
+    case 'MAP_SUBMISSION_FAILED':
+      console.log(action.err);
+    default:
+      return state;
+  }
+}
+
+function user(state = {}, action) {
   switch (action.type) {
     case 'AUTHORIZE':
       return {...state, userId: action.userId};
@@ -27,7 +50,7 @@ function user(state = {currentSub: 1}, action) {
       return {...state, currentSub: action.itemValue};
     case 'FETCH_USER_DATA_REQUEST':
       console.log('fetching user data');
-      return {...state};
+      return state;
     case 'FETCH_USER_DATA_SUCCESS':
       return {...state, userData: action.userData};
     case 'FETCH_USER_DATA_FAILURE':
@@ -89,6 +112,31 @@ function settings(state = {
       return {...state, adminSettingsTitle: action.adminSettingsTitle};
     case 'ADMIN_SETTINGS_DESCRIPTION':
       return {...state, adminSettingsDescription: action.adminSettingsDescription};
+      default:
+        return state;
+    }
+  }
+
+function comments(state = {}, action) {
+  switch (action.type) {
+    case 'FETCH_COMMENTS_REQUEST':
+      console.log('fetching comments');
+    case 'FETCH_COMMENTS_SUCCESS':
+      return {...state, commentList: action.commentList}
+    case 'FETCH_COMMENTS_FAILURE':
+      console.log(action.err);
+      return state;
+    case 'SUBMITTING_COMMENT':
+      console.log('submitting comment');
+      return state;
+    case 'SUBMITTED_COMMENT':
+      console.log('comment submitted')
+      return state;
+    case 'COMMENT_SUBMISSION_FAILED':
+      console.log(action.err);
+      return state;
+    case 'UPDATE_COMMENT':
+      return {...state, userComment: action.text};
 
     default:
       return state;
@@ -101,7 +149,9 @@ const appReducer = combineReducers({
   posts,
   userPost,
   settings,
-  currentUserPreference
+  currentUserPreference,
+  userMap,
+  comments,
 });
 
 const initialState = {
@@ -110,7 +160,9 @@ const initialState = {
   posts: null,
   userPost: null,
   settings: {},
-  currentUserPreference: null
+  currentUserPreference: null,
+  userMap: null,
+  comments: null,
 };
 
 export { appReducer, initialState };

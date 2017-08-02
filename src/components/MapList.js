@@ -15,13 +15,21 @@ const styles = StyleSheet.create({
   },
 });
 
+const localSub = {
+  description: "All pins in your area",
+  id: null,
+  location_threshold: 20,
+  title: "Local",
+  upvote_threshold: 0,
+}
+
 class MapList extends React.Component {
   constructor(props) {
     super(props);
     console.log('this is props in map list! ', props)
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows(props.userData.subreddits),
+      dataSource: ds.cloneWithRows([localSub, ...props.userData.subreddits]),
     };
   }
   render() {

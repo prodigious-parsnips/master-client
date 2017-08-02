@@ -10,6 +10,7 @@ import SignIn from './components/SignIn.js';
 import PostView from './components/PostView.js';
 import CreatePost from './components/CreatePost.js';
 import Settings from './components/Settings/Settings.js'
+import CreateSub from './components/CreateSub.js';
 import { getDrawerHeader } from './components/NavBar.js';
 
 const DynamicDrawer = (props) => {
@@ -23,9 +24,9 @@ const DynamicDrawer = (props) => {
 const Drawer = DrawerNavigator({
   Home: {screen: SubbedMap},
   Settings: {screen: Settings},
-  Test: {screen: TestScreen},
   Account: {screen: SignIn},
-  Maps: {screen: MapList}
+  Maps: {screen: MapList},
+  CreateSub: {screen: CreateSub},
 }, {contentComponent: DynamicDrawer});
 
 Drawer.navigationOptions = (props) => {
@@ -40,13 +41,13 @@ Drawer.navigationOptions = (props) => {
 
 const AppNavigator = StackNavigator({
   Drawer: {screen: Drawer},
+  Home: {screen: SubbedMap},
   PostView: {screen: PostView},
   CreatePost: {screen: CreatePost},
   PostView: {screen: PostView},
-  Posts: {screen: TestScreen},
 });
 
-const initialNavState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Posts'));
+const initialNavState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Home'));
 
 const nav = (state = initialNavState, action) => {
   const nextState = AppNavigator.router.getStateForAction(action, state);

@@ -1,10 +1,10 @@
 import React from 'react';
-import { ScrollView, FlatList, Text, TouchableOpacity } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity, Button } from 'react-native';
 import PostPreview from './PostPreview';
 import styles from '../styles';
 export default PostList = (props) => {
   return (
-  <ScrollView>
+  <View>
     <FlatList
       data={props.messages}
       keyExtractor={item => {
@@ -12,11 +12,15 @@ export default PostList = (props) => {
       }
     }
       renderItem={({item}) => (
-        <TouchableOpacity style={styles.container} onPress={() => props.selectPost(item)}>
-          <PostPreview title={item.title}/>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity style={styles.container} onPress={() => props.selectPost(item)}>
+            <PostPreview title={item.title}/>
+          </TouchableOpacity>
+          <Button onPress={() => props.like(item.id)} title="Like"/>
+          <Button onPress={() => props.selectSub(item.subreddit_id)} title="Go to map"/>
+        </View>
       )}/>
-  </ScrollView>
+  </View>
 )};
 
 // onPress={() => navigate('Home', {title: this.props.messages.title, text: this.props.messages.text})}
