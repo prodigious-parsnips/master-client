@@ -27,7 +27,6 @@ class Settings extends React.Component {
   }
 
   renderAdminSettings(section) {
-    console.log("inside of renderAdminSettings", this.props);
     return (
       <View>
         <AdminSettings 
@@ -75,7 +74,7 @@ class Settings extends React.Component {
           <Accordion
             sections={['Section 1']}
             renderHeader={this.renderHeader.bind(this)}
-            renderContent={this.renderUserSettings.bind(this), index, isActive}
+            renderContent={this.renderUserSettings.bind(this)}
           />
         </View>
       </ScrollView>
@@ -91,7 +90,7 @@ const mapStateToProps = (state) => {
     adminSettingsUpvoteThresholdValue: state.settings.adminSettingsUpvoteThreshold,
     adminSettingsDistanceThresholdValue: state.settings.adminSettingsDistanceThreshold,
     adminSettingsNotifThresholdValue: state.settings.adminSettingsNotifThreshold,
-  })
+  })  
 }
 
 const mapDispatchToProps = (dispatch) => {
