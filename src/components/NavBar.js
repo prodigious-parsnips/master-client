@@ -30,7 +30,7 @@ const getDrawerHeader = props => (
         }
       }}
     />
-  {props.navigation.state.index === 0 && <Switch />}
+  {props.navigation.state.index === 0 && <Switch style={styles.switch}/>}
     {props.navigation.state.index === 0 && <NavBarItem
       iconName="plus"
       onPress={() => {
@@ -39,5 +39,20 @@ const getDrawerHeader = props => (
       />}
   </View>
 );
+
+const styles = StyleSheet.create({
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  switch: {
+    flex: 1,
+    position: 'absolute',
+    alignItems: 'stretch',
+    right: -225,
+    top: 5
+
+  }
+})
 
 export { getDrawerHeader };
