@@ -76,7 +76,6 @@ function settings(state = {
       return {...state, adminSettingsDistanceThreshold: action.adminSettingsDistanceThreshold};
     case 'ADMIN_SETTINGS_NOTIFICATION_THRESHOLD':
       return {...state, adminSettingsNotifThreshold: action.adminSettingsNotifThreshold};
-
     default:
       return state;
   }

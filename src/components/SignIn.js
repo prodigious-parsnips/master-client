@@ -117,6 +117,11 @@ class SignIn extends React.Component {
   }
 }
 
+
+
+  
+
+
 const mapDispatchToProps = (dispatch) => {
   return {
     handleSignUp: (credentials, navigate)=>{ 
