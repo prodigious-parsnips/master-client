@@ -18,26 +18,30 @@ function userPost(state = {}, action) {
   }
 }
 
-function posts(state = {}, action) {
+function userMap(state = {}, action) {
   switch (action.type) {
-    case 'UPDATE_POST_TITLE':
+    case 'UPDATE_MAP_TITLE':
       return {...state, title: action.title};
-    case 'UPDATE_POST_TEXT':
-      return {...state, text: action.text};
-    case 'SUBMITTING_POST':
+    case 'UPDATE_MAP_DESCRIPTION':
+      return {...state, description: action.description};
+    case 'UPDATE_UPVOTE_THRESHOLD':
+      return {...state, upvoteThreshold: action.value};
+    case 'UPDATE_DISTANCE_THRESHOLD':
+      return {...state, distanceThreshold: action.value};
+    case 'SUBMITTING_MAP':
+      console.log('submitting map');
       return state;
-    case 'SUBMITTED_POST':
+    case 'SUBMITTED_MAP':
+      console.log('map submitted');
       return state;
-    case 'SUBMISSION_FAILED':
+    case 'MAP_SUBMISSION_FAILED':
       console.log(action.err);
-    case 'SELECT_POST':
-      return {...state, currentPost: action.post}
     default:
       return state;
   }
 }
 
-function user(state = {currentSub: 6}, action) {
+function user(state = {}, action) {
   switch (action.type) {
     case 'AUTHORIZE':
       return {...state, userId: action.userId};
@@ -146,6 +150,7 @@ const appReducer = combineReducers({
   userPost,
   settings,
   currentUserPreference,
+  userMap,
   comments,
 });
 
@@ -156,6 +161,7 @@ const initialState = {
   userPost: null,
   settings: {},
   currentUserPreference: null,
+  userMap: null,
   comments: null,
 };
 

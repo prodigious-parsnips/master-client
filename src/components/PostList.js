@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, FlatList, Text, TouchableOpacity } from 'react-native';
+import { View, FlatList, Text, TouchableOpacity, Button } from 'react-native';
 import PostPreview from './PostPreview';
 import styles from '../styles';
 export default PostList = (props) => {
@@ -12,9 +12,12 @@ export default PostList = (props) => {
       }
     }
       renderItem={({item}) => (
-        <TouchableOpacity style={styles.container} onPress={() => props.selectPost(item)}>
-          <PostPreview title={item.title}/>
-        </TouchableOpacity>
+        <View>
+          <TouchableOpacity style={styles.container} onPress={() => props.selectPost(item)}>
+            <PostPreview title={item.title}/>
+          </TouchableOpacity>
+          <Button onPress={() => props.like(item.id)} title="Like"/>
+        </View>
       )}/>
   </View>
 )};
