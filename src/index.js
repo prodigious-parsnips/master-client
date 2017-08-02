@@ -7,7 +7,7 @@ import { AppNavigator } from './Navigators.js';
 import { appReducer, initialState } from './reducer';
 import PushNotification from 'react-native-push-notification';
 
-const TEMP_USER_ID = 2;
+const TEMP_USER_ID = 1;
 
 class App extends React.Component {
 
