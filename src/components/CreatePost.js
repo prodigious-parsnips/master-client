@@ -47,8 +47,8 @@ class CreatePost extends React.Component {
   render() {
     return (
       <ScrollView style={styles.container}>
-        <TextInput style={styles.title} placeholder="Title" onChangeText={this.props.updatePostTitle} />
-        <TextInput style={styles.message} placeholder="Message" onChangeText={this.props.updatePostText} />
+        <TextInput style={styles.title} placeholder="Enter a Title" onChangeText={this.props.updatePostTitle} />
+        <TextInput style={styles.message} placeholder="Enter Message" onChangeText={this.props.updatePostText} />
         <Button raised iconRight icon={{name: 'check'}} title='Submit Pin' buttonStyle={styles.button} onPress={this.submitPost} />
       </ScrollView>
     );
@@ -81,13 +81,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   message: {
-    marginTop: 2,
+    marginTop: 5,
     height: 100,
     borderWidth: 1.5,
     borderRadius: 5,
   },
   button: {
-    marginTop: 2,
+    marginTop: 5,
     backgroundColor:'rgba(0, 124, 220, 100)',
   },
 
