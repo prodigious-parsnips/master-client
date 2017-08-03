@@ -4,7 +4,7 @@ import Accordion from 'react-native-collapsible/Accordion';
 import UserSettings from './UserSettings.js';
 import AdminSettings from './AdminSettings.js';
 import {connect} from 'react-redux';
-
+import defaultStyle from '../../styles';
 var { height, width } = Dimensions.get('window');
 
 class Settings extends React.Component {
@@ -21,7 +21,7 @@ class Settings extends React.Component {
   renderHeader(section) {
     return (
       <View style={styles.header}>
-        <Text style={styles.title}>Title - Click Me</Text>
+        <Text style={styles.title}>Settings</Text>
       </View>
     );
   }
@@ -67,9 +67,8 @@ class Settings extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView>
-        <Text>Settings Screen</Text>
         {this.props.isAdmin.length > 0 && <View style={styles.admin}>
-          <Text>Admin Settings Panels</Text>
+          <Text style={defaultStyle.centerAlignedItems}>Admin Settings Panel</Text>
           <Accordion style={styles.accordion}
             sections={['Section 1']}
             renderHeader={this.renderHeader.bind(this)}
@@ -77,7 +76,7 @@ class Settings extends React.Component {
           />
         </View>}
         <View style={styles.users}>
-          <Text>User Settings Panels</Text>
+          <Text style={defaultStyle.centerAlignedItems}>User Settings Panel</Text>
           <Accordion
             sections={['Section 1']}
             renderHeader={this.renderHeader.bind(this)}
@@ -174,13 +173,17 @@ export default connect(mapStateToProps, mapDispatchToProps)(Settings);
 const styles = StyleSheet.create({
   header: {
     flex: 1,
-    padding: 5,
+    padding: 5
   },
+
   title: {
     backgroundColor: 'white',
     borderColor: 'rgba(0, 124, 220, 100)',
     borderStyle: 'solid',
-    borderWidth: 1.5,
+    borderWidth: .5,
     textAlign: 'center',
+    paddingTop: 8,
+    paddingBottom: 8
   },
+
 });

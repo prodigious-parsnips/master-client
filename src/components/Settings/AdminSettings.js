@@ -48,15 +48,14 @@ export default class AdminSettings extends React.Component {
   render() {
     return (
       <ScrollView>
-        <Text>AdminSettings Component</Text>
         <View style={styles.container}>
 
           <Text>Title:</Text>
-          <TextInput style={styles.title} placeholder="Title"
+          <TextInput  multiline = {true} numberOfLines = {4} style={styles.title} placeholder="Title"
             onChangeText={(title) => this.props.adminSettingsTitle(title)}
           />
           <Text>Description:</Text>
-          <TextInput style={styles.description} placeholder="Description"
+          <TextInput  multiline = {true} numberOfLines = {4}  style={styles.description} placeholder="Description"
             onChangeText={(description) => this.props.adminSettingsDescription(description)}
           />
 
@@ -98,14 +97,18 @@ const styles = StyleSheet.create({
   },
   title: {
     height: 40,
-    width: 200,
-    borderWidth: 1,
+    width: '60%',
     borderRadius: 5,
+    backgroundColor: '#f5f5f5',
+    marginTop:10,
+    marginBottom:10
   },
   description: {
     height: 100,
-    width: 200,
-    borderWidth: 1,
+    width: '60%',
     borderRadius: 5,
+    backgroundColor: '#f5f5f5',
+    marginTop:10,
+    marginBottom:10
   },
 })

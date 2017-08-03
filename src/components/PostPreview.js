@@ -9,4 +9,4 @@ export default PostPreview = (props) => (
   <Text>{props.title}</Text>
   </View>
 );
-//
+

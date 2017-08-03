@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, Text, TextInput, Button, Slider } from 'react-native';
+import { View, Text, TextInput, Button, Slider, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-
+import defaultStyles from '../styles'
 
 class CreateComment extends React.Component {
   constructor(props) {
@@ -36,13 +36,13 @@ class CreateComment extends React.Component {
 
   render() {
     return (
-      <View>
-      <Text>CreatMap</Text>
-        <TextInput placeholder="Title" onChangeText={this.props.updateMapTitle}/>
-        <TextInput placeholder="Descriptions" onChangeText={this.props.updateMapDescription}/>
-        <Text>Upvote Threshold: </Text>
+      <View style={defaultStyles.containerAlt}>
+      <Text style={styles.title}>Create a New Map</Text>
+        <TextInput multiline = {true} style={styles.input} placeholder="Title" onChangeText={this.props.updateMapTitle}/>
+        <TextInput  multiline = {true} numberOfLines = {4} style={styles.inputDescription} placeholder="Descriptions" onChangeText={this.props.updateMapDescription}/>
+        <Text  >Upvote Threshold: </Text>
         <Slider style={{width:200}} maximumValue={10} step={1} onValueChange={this.props.updateUpvoteThreshold}/>
-        <Text>Distance Threshold: </Text>
+        <Text  >Distance Threshold: </Text>
         <Slider style={{width:200}} maximumValue={10} step={1} onValueChange={this.props.updateDistanceThreshold}/>
         <Button title="Submit" onPress={this.submitMap}/>
       </View>
@@ -63,3 +63,31 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateComment);
+
+const styles = StyleSheet.create({
+  input: {
+    width: '60%',
+    backgroundColor: '#f5f5f5',
+    paddingTop: 8,
+    paddingBottom: 8,
+    marginBottom: 15,
+    marginTop: 15,
+    alignItems: 'center'
+  },
+
+  inputDescription: {
+    width: '60%',
+    backgroundColor: '#f5f5f5',
+    height: 100,
+    paddingTop: 8,
+    marginTop: 15,
+    marginBottom:15,
+    alignItems: 'center'
+  },
+
+  title: {
+    marginTop:10
+  } 
+
+})
+

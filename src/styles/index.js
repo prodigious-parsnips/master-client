@@ -12,8 +12,13 @@ export default styles = StyleSheet.create({
   },
   container: {
     borderRadius: 4,
-    borderWidth: 1.5,
+    borderWidth: 0,
     borderColor: 'black',
+  },
+  containerAlt: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   row: {
     flex: 1,
@@ -27,8 +32,37 @@ export default styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: .5,
   },
+
   title: {
-    fontSize: 20,
+    fontSize: 13,
     fontWeight: 'bold',
+    marginLeft: 35,
+    color: '#f5f5f5'
   },
+
+  textAlt: {
+    fontSize: 13,
+    fontWeight: 'bold',
+    marginLeft: 18,
+    marginTop: 15,
+    color: 'black'
+  },
+
+  header: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginLeft: 18,
+    marginTop: 15,
+  },
+
+  centerAlignedItems: {
+    fontSize: 13,
+    fontWeight: 'normal',
+    marginLeft: '33%',
+    marginTop: 20,
+    marginBottom: 5
+  },
+
+
+
 });

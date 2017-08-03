@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Slider } from 'react-native';
-
+import defaultStyles from '../../styles';
 export default class UserSettings extends React.Component {
 
   constructor(props) {
@@ -43,7 +43,6 @@ export default class UserSettings extends React.Component {
   render() {
     return (
       <ScrollView>
-        <Text>UserSettings Component</Text>
         <View style={styles.container}>
           <Text>Upvote Threshold: {this.props.userSettingsUpvoteThresholdValue}</Text>
           <Slider style={{width:200}} maximumValue={10} step={1}
@@ -79,6 +78,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center',
-  },
+    alignItems: 'center'
+  }
+  
 })
