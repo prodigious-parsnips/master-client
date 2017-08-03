@@ -14,10 +14,8 @@ export default PostList = (props) => {
       renderItem={({item}) => (
         <View>
           <TouchableOpacity style={styles.container} onPress={() => props.selectPost(item)}>
-            <PostPreview title={item.title}/>
+            <PostPreview title={item.title} upvotes={item.upvotes} subTitle={item.subreddit_id} author={item.user_id}/>
           </TouchableOpacity>
-          <Button onPress={() => props.like(item.id)} title="Like"/>
-          <Button onPress={() => props.selectSub(item.subreddit_id)} title="Go to map"/>
         </View>
       )}/>
   </View>
