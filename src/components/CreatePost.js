@@ -1,5 +1,6 @@
 import React from 'react';
-import { ScrollView, Text, Button, StyleSheet, TextInput } from 'react-native';
+import { ScrollView, Text, StyleSheet, TextInput } from 'react-native';
+import { Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import Promise from 'bluebird';
 Promise.promisifyAll(navigator.geolocation);
@@ -45,10 +46,10 @@ class CreatePost extends React.Component {
 
   render() {
     return (
-      <ScrollView>
-        <TextInput style={styles.title} value={this.props.userPost.title} placeholder="Title" onChangeText={this.props.updatePostTitle} />
-        <TextInput style={styles.message} value={this.props.userPost.text} placeholder="Message" onChangeText={this.props.updatePostText} />
-        <Button title='Submit Post' buttonStyle={styles.button} onPress={this.submitPost} />
+      <ScrollView style={styles.container}>
+        <TextInput style={styles.title} placeholder="Enter a Title" onChangeText={this.props.updatePostTitle} />
+        <TextInput style={styles.message} placeholder="Enter Message" onChangeText={this.props.updatePostText} />
+        <Button raised iconRight icon={{name: 'check'}} title='Submit Pin' buttonStyle={styles.button} onPress={this.submitPost} />
       </ScrollView>
     );
   }
@@ -72,8 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'stretch',
     padding: 25,
   },
   title: {
@@ -82,13 +81,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   message: {
-    marginTop: 2,
+    marginTop: 5,
     height: 100,
     borderWidth: 1.5,
     borderRadius: 5,
   },
   button: {
-    marginTop: 2,
+    marginTop: 5,
     backgroundColor:'rgba(0, 124, 220, 100)',
   },
 

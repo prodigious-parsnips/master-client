@@ -14,7 +14,7 @@ class Settings extends React.Component {
 
 
   componentDidMount() {
-    console.log("props", this.props);
+    console.log("SETTINGS props", this.props);
   }
 
 
@@ -68,14 +68,14 @@ class Settings extends React.Component {
     return (
       <ScrollView>
         <Text>Settings Screen</Text>
-        <View style={styles.admin}>
+        {this.props.isAdmin.length > 0 && <View style={styles.admin}>
           <Text>Admin Settings Panels</Text>
           <Accordion style={styles.accordion}
             sections={['Section 1']}
             renderHeader={this.renderHeader.bind(this)}
             renderContent={this.renderAdminSettings.bind(this)}
           />
-        </View>
+        </View>}
         <View style={styles.users}>
           <Text>User Settings Panels</Text>
           <Accordion
@@ -99,7 +99,8 @@ const mapStateToProps = (state) => {
     adminSettingsNotifThresholdValue: state.settings.adminSettingsNotifThreshold,
     userId: state.user.userData.id,
     adminTitle: state.settings.adminSettingsTitle,
-    adminDescription: state.settings.adminSettingsDescription
+    adminDescription: state.settings.adminSettingsDescription,
+    isAdmin: state.user.userData.admin_preferences
   })
 }
 

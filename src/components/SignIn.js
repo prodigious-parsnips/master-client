@@ -56,11 +56,11 @@ class SignIn extends React.Component {
         });
         break;
     }
-    
+
 
   }
 
-  render() { 
+  render() {
     return (
       <Container>
       <StatusBarAlert
@@ -69,7 +69,7 @@ class SignIn extends React.Component {
         backgroundColor="#3CC29E"
         color="white"
       />
-        
+
       <Header hasTabs />
 
         <Tabs initialPage={0}>
@@ -110,7 +110,7 @@ class SignIn extends React.Component {
             </View>
           </Tab>
 
-        </Tabs> 
+        </Tabs>
 
       </Container>
     );
@@ -119,12 +119,12 @@ class SignIn extends React.Component {
 
 
 
-  
+
 
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleSignUp: (credentials, navigate)=>{ 
+    handleSignUp: (credentials, navigate)=>{
       fetch('http://localhost:3000/signup', {
         method: 'POST',
         headers: {
@@ -148,7 +148,7 @@ const mapDispatchToProps = (dispatch) => {
         // .then(res => res.json())
         // .then(data => {
         //   dispatch({type: 'FETCH_USER_DATA_SUCCESS', userData: data});
-          
+
         // })
         // .catch(err => dispatch({type: 'FETCH_USER_DATA_FAILURE'}));
       })
@@ -156,7 +156,7 @@ const mapDispatchToProps = (dispatch) => {
         console.log('this is the err ', err)
         Alert.alert('Error', 'There has been a server error');
       })
-    },  
+    },
     handleSignIn: (credentials, navigate)=>{
       fetch('http://localhost:3000/login', {
         method: 'POST',
@@ -213,13 +213,13 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   pass: {
-    marginTop: 2,
+    marginTop: 5,
     height: 40,
     borderWidth: 1.5,
     borderRadius: 5,
   },
   button: {
-    marginTop: 2,
+    marginTop: 5,
     backgroundColor:'rgba(0, 124, 220, 100)',
   },
 });
