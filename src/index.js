@@ -159,7 +159,6 @@ const mapDispatchToProps = (dispatch) => {
         type: "ADMIN_SETTINGS_DISTANCE_THRESHOLD",
         adminSettingsDistanceThreshold: val
       }
-      dispatch(action)
     },
     adminSettingsNotifThreshold: (val = 0) => {
       const action = {
@@ -176,9 +175,9 @@ App = connect(mapStateToProps, mapDispatchToProps)(App);
 const store = createStore(appReducer);
 
 
-// setInterval(()=>{
-//   console.log(store.getState())
-// }, 15000)
+setInterval(()=>{
+  console.log(store.getState())
+}, 15000)
 
 
 class Root extends React.Component {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, PickerIOS, View } from 'react-native';
+import { ScrollView, Text, PickerIOS, View, Button } from 'react-native';
 import { connect } from 'react-redux';
 import PostList from './PostList.js';
 import styles from '../styles';
@@ -13,10 +13,10 @@ class SubbedMap extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-  if (prevProps.currentSub !== this.props.currentSub){
-    this.componentDidMount();
+    if (prevProps.currentSub !== this.props.currentSub){
+      this.componentDidMount();
+    }
   }
-}
 
   componentDidMount() {
     if (!this.props.currentSub) {
@@ -24,6 +24,10 @@ class SubbedMap extends React.Component {
     } else {
       this.fetchMessages();
     }
+  }
+
+  subscribe() {
+
   }
 
   viewPost(post) {
@@ -53,11 +57,10 @@ class SubbedMap extends React.Component {
 
   render() {
     return (
-      <View>
       <ScrollView style={styles.app}>
-        <PostList like={this.props.like} messages={this.props.posts} selectPost={this.viewPost} selectSub={this.props.selectSub} />
+        {this.props.currentSub ? <Button title={'Subscribe'} onPress={this.props.subscribeToMap}/> : null}
+        <PostList like={this.props.like} upvotes={10} messages={this.props.posts} selectPost={this.viewPost} selectSub={this.props.selectSub} />
       </ScrollView>
-      </View>
     );
   }
 }
@@ -77,7 +80,8 @@ const mapDispatchToProps = dispatch => {
     selectPost: post => dispatch({type: 'SELECT_POST', post: post}),
     loadPosts: () => dispatch({type: 'FETCH_POSTS_REQUEST'}),
     updatePosts: posts => dispatch({type: 'FETCH_POSTS_SUCCESS', posts: posts}),
-    timeoutPosts: err => dispatch({type: 'FETCH_POSTS_FAILURE', err: err})
+    timeoutPosts: err => dispatch({type: 'FETCH_POSTS_FAILURE', err: err}),
+    newSubscription: () => dispatch({type: 'SUBSCRIBE_TO_MAP', mapId: this.props.currentSub})
   });
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SubbedMap);

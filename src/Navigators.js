@@ -23,10 +23,10 @@ const DynamicDrawer = (props) => {
 
 const Drawer = DrawerNavigator({
   Home: {screen: SubbedMap},
-  Settings: {screen: Settings},
   Account: {screen: SignIn},
-  Maps: {screen: MapList},
-  CreateSub: {screen: CreateSub},
+  Settings: {screen: Settings},
+  Hubs: {screen: MapList},
+  "Create Hub": {screen: CreateSub},
 }, {contentComponent: DynamicDrawer});
 
 Drawer.navigationOptions = (props) => {

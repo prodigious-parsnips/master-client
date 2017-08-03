@@ -7,12 +7,18 @@ import { connect } from 'react-redux';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    // marginTop: 20,
+    backgroundColor: '#eff5ff',
   },
   text: {
     marginLeft: 12,
     fontSize: 16,
   },
+  row: {
+    borderRadius: 4,
+    borderWidth: 1.5,
+    borderColor: 'black',
+  }
 });
 
 const localSub = {
@@ -35,7 +41,6 @@ class MapList extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style ={styles.text}>Select a Map</Text>
           <ListView
             style={styles.container}
             dataSource={this.state.dataSource}
