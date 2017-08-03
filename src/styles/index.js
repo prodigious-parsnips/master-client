@@ -12,14 +12,10 @@ export default styles = StyleSheet.create({
   },
   container: {
     borderRadius: 4,
-<<<<<<< HEAD
-    borderWidth: 0,
-=======
     borderTopWidth: .5,
     borderBottomWidth: .5,
     borderLeftWidth: 1,
     borderRightWidth: 1,
->>>>>>> Styling on post view and map view
     borderColor: 'black',
   },
   containerAlt: {

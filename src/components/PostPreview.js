@@ -17,8 +17,6 @@ export default PostPreview = (props) => (
   </View>
 );
 
-<<<<<<< HEAD
-=======
 const styles = StyleSheet.create({
   row: {
     flex: 1,
@@ -128,4 +126,3 @@ var subs = [
   'Pizza Associate',
   'deposit Associate withdrawal'
 ];
->>>>>>> Styling on post view and map view
