@@ -7,7 +7,7 @@ import { AppNavigator } from './Navigators.js';
 import { appReducer, initialState } from './reducer';
 import PushNotification from 'react-native-push-notification';
 
-const TEMP_USER_ID = 1;
+const TEMP_USER_ID = 3;
 
 class App extends React.Component {
 
@@ -175,9 +175,9 @@ App = connect(mapStateToProps, mapDispatchToProps)(App);
 const store = createStore(appReducer);
 
 
-setInterval(()=>{
-  console.log(store.getState())
-}, 15000)
+// setInterval(()=>{
+//   console.log(store.getState())
+// }, 15000)
 
 
 class Root extends React.Component {

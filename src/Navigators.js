@@ -22,7 +22,7 @@ const DynamicDrawer = (props) => {
 }
 
 const Drawer = DrawerNavigator({
-  Home: {screen: SubbedMap},
+  Local: {screen: SubbedMap},
   Account: {screen: SignIn},
   Settings: {screen: Settings},
   Hubs: {screen: MapList},
@@ -31,7 +31,7 @@ const Drawer = DrawerNavigator({
 
 Drawer.navigationOptions = (props) => {
   return {
-    title: 'HereNow',
+    title: 'Breaking News',
     headerStyle: {backgroundColor: 'rgba(0, 124, 220, 100)'},
     headerTitleStyle: {color: 'white'},
     headerTintColor: 'white',
