@@ -2,17 +2,24 @@ import { StyleSheet } from 'react-native';
 
 export default styles = StyleSheet.create({
   app: {
-    backgroundColor: 'white',
+    backgroundColor: '#eff5ff',
     borderRadius: 4,
     borderWidth: 3.5,
-    borderColor: 'white',
+    borderColor: '#eff5ff',
   },
   list: {
-    backgroundColor: 'white'
+    backgroundColor: '#eff5ff'
   },
   container: {
     borderRadius: 4,
+<<<<<<< HEAD
     borderWidth: 0,
+=======
+    borderTopWidth: .5,
+    borderBottomWidth: .5,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+>>>>>>> Styling on post view and map view
     borderColor: 'black',
   },
   containerAlt: {

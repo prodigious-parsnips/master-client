@@ -1,9 +1,8 @@
 import React from 'react';
-import { StyleSheet, ScrollView, Text } from 'react-native';
+import { StyleSheet, ScrollView, Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import CommentList from './CommentList.js';
 import CreateComment from './CreateComment.js';
-
 
 class PostView extends React.Component {
   constructor(props) {
@@ -51,19 +50,43 @@ class PostView extends React.Component {
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        <Text>PostView</Text>
-        <Text>{this.props.posts.currentPost.title}</Text>
-        <Text>{this.props.posts.currentPost.text}</Text>
+      <ScrollView>
+        <Text style={styles.title}>{this.props.posts.currentPost.title}</Text>
+        <Text style={styles.author}>{names[this.props.user.userData.id]}</Text>
+        <View style={styles.text}>
+          <Text>{this.props.posts.currentPost.text}</Text>
+        </View>
+        <CommentList comments={this.props.comments.commentList}/>
         <CreateComment
           submitComment={this.submitComment}
           updateComment={this.props.updateComment}
           />
-        <CommentList comments={this.props.comments.commentList}/>
       </ScrollView>
     );
   }
 }
+const styles = StyleSheet.create({
+
+  title : {
+    textAlign: 'center',
+    fontWeight: 'bold',
+    marginTop: 5,
+  },
+  text: {
+    borderColor: 'gray',
+    borderTopWidth: 1.5,
+    borderBottomWidth: 1.5,
+    padding: 8,
+    fontSize: 10,
+  },
+  author: {
+    fontSize: 10,
+    fontWeight: 'bold',
+    color: '#355282',
+    marginBottom: 5,
+    alignSelf: 'center',
+  },
+});
 
 const mapStateToProps = store => store;
 const mapDispatchToProps = dispatch => {
@@ -78,23 +101,37 @@ const mapDispatchToProps = dispatch => {
   });
 };
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-  },
-  title: {
-    height: 40,
-    borderRadius: 5,
-    borderWidth: 1,
-    textAlign: 'center',
-    fontWeight: 'bold',
-  },
-  message: {
-    marginTop: 2,
-    height: 100,
-    borderRadius: 5,
-    borderWidth: 1,
-  },
-});
+var names = [
+  'Trey_Spinka',
+  'Paris.Ledner',
+  'Christelle_Bednar27',
+  'Flavie_Wintheiser78',
+  'Gudrun_Hammes84',
+  'Emilio_McDermott',
+  'Jayson.Ebert',
+  'Ashton85',
+  'Godfrey9',
+  'Jamil_Grady33',
+  'Bennie_Schulist',
+  'Marjorie_Dooley',
+  'Nelda_Kshlerin81',
+  'Emmanuelle.Baumbach',
+  'Ruben33',
+  'Rosalinda.Smith22',
+  'Seamus_Romaguera',
+  'Cole.Hayes',
+  'Noel54',
+  'Fermin24',
+  'Micah.Jast86',
+  'Evert_Hand',
+  'Marina_Rutherford99',
+  'Alba_Cremin',
+  'Marlee33',
+  'Ally14',
+  'Mavis_Reinger',
+  'Joanne46',
+  'Morris.Muller',
+  'Hazel_Cassin97'
+];
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostView);
