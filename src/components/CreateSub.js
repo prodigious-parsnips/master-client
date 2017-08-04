@@ -7,6 +7,7 @@ class CreateComment extends React.Component {
   constructor(props) {
     super(props);
     this.submitMap = this.submitMap.bind(this);
+
   }
 
   submitMap() {
@@ -22,16 +23,15 @@ class CreateComment extends React.Component {
         userId: this.props.user.userData.id,
       }),
     })
-    .then(response => response.json())
-    .then(data => {
-      this.props.submittedPost();
+    .then(() => {
+      this.props.submittedMap();
       this.props.updateMapTitle();
       this.props.updateUpvoteThreshold(0);
       this.props.updateDistanceThreshold(0);
       this.props.updateMapDescription();
       this.props.navigation.navigate('Home');
     })
-    .catch(err => this.props.submissionFailed(err));
+    .catch(err => console.log(err));
   }
 
   render() {
@@ -59,7 +59,7 @@ const mapDispatchToProps = (dispatch) => ({
   updateDistanceThreshold: (value) => dispatch({type:'UPDATE_DISTANCE_THRESHOLD', value:value}),
   submittingMap: () => dispatch({type:'SUBMITTING_MAP'}),
   submittedMap: () => dispatch({type:'SUBMITTED_MAP'}),
-  subMapmissionFailed: (err) => dispatch({type:'MAP_SUBMISSION_FAILED', err:err}),
+  submissionFailed: (err) => dispatch({type:'MAP_SUBMISSION_FAILED', err:err}),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreateComment);

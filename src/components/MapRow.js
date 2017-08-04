@@ -3,9 +3,18 @@ import { View, Text, StyleSheet, Image, TouchableHighlight } from 'react-native'
 import faker from 'faker';
 
 const styles = StyleSheet.create({
-  container: {
+  outContainer: {
     flex: 1,
-    padding: 12,
+    padding: 6,
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 4,
+    borderWidth: .5,
+    borderColor: '#b7bfcc',
+  },
+  inContainer: {
+    flex: 1,
+    padding: 6,
     flexDirection: 'row',
     alignItems: 'center',
   },
@@ -23,8 +32,8 @@ const styles = StyleSheet.create({
 const MapRow = (props) => {
   console.log('this is the props in row ', props)
   return (
-    <TouchableHighlight style={styles.container} onPress = { () => {props.onClick(props)} }>
-    <View style={styles.container}>
+    <TouchableHighlight style={styles.outContainer} onPress = { () => {props.onClick(props)} }>
+    <View style={styles.inContainer}>
       <Image source={{ uri: faker.internet.avatar()}} style={styles.photo} />
       <Text style={styles.text}>
         {props.mapData.title}

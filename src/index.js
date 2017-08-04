@@ -7,7 +7,7 @@ import { AppNavigator } from './Navigators.js';
 import { appReducer, initialState } from './reducer';
 import PushNotification from 'react-native-push-notification';
 
-const TEMP_USER_ID = 1;
+const TEMP_USER_ID = 3;
 
 class App extends React.Component {
 
@@ -159,7 +159,6 @@ const mapDispatchToProps = (dispatch) => {
         type: "ADMIN_SETTINGS_DISTANCE_THRESHOLD",
         adminSettingsDistanceThreshold: val
       }
-      dispatch(action)
     },
     adminSettingsNotifThreshold: (val = 0) => {
       const action = {
