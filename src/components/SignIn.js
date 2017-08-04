@@ -89,7 +89,7 @@ class SignIn extends React.Component {
 
               <Button
                 raised iconRight icon={{name: 'person'}}
-                title='Sign Into HereNow' buttonStyle={styles.button}
+                title='Sign In To Scout' buttonStyle={styles.button}
                 onPress={()=>{this.props.handleSignIn(this.state.signIn, this.props.navigation.navigate)}}
               />
             </View>
@@ -107,7 +107,7 @@ class SignIn extends React.Component {
 
               <Button
                 raised iconRight icon={{name: 'person-add'}}
-                title='Sign Up For HereNow' buttonStyle={styles.button}
+                title='Sign Up For Scout' buttonStyle={styles.button}
                 onPress={()=>{this.props.handleSignUp(this.state.signUp, this.props.navigation.navigate)}}
               />
             </View>

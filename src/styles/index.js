@@ -70,5 +70,11 @@ export default styles = StyleSheet.create({
     paddingLeft: 20,
     backgroundColor: '#D0E7F8'
   },
+  leftSwipeItem: {
+    flex: 1,
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    paddingRight: 20
+  },
 
 });

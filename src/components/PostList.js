@@ -12,11 +12,17 @@ export default PostList = (props) => {
     </TouchableOpacity>
   ];
 
+  const leftButtons = [
+    <TouchableOpacity style={styles.leftSwipeItem}>
+      <Text>Navigate to Hub</Text>
+    </TouchableOpacity>
+  ];
+
   return (
   <View>
     <FlatList
       data={props.messages}
-      keyExtractor={item => {
+      keyExtractor={(item, index) => {
         return item.id
       }
     }
@@ -31,6 +37,9 @@ export default PostList = (props) => {
             onRightActionRelease={() => AlertIOS.alert('UPVOTED')}
             rightActionActivationDistance={25}
             rightContent={rightButtons}
+            leftContent={leftButtons}
+            leftActionActivationDistance={200}
+            onLeftActionRelease={() => props.selectSub(item.subreddit_id)}
           >
             <TouchableOpacity style={styles.container} onPress={() => props.selectPost(item)}>
               <PostPreview title={item.title} upvotes={item.upvotes} subTitle={item.subreddit_id} author={item.user_id}/>
@@ -40,7 +49,8 @@ export default PostList = (props) => {
       )}/>
 
   </View>
-)};
+)
+};
 
 
 

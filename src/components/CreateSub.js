@@ -16,6 +16,10 @@ class CreateComment extends React.Component {
 
   }
 
+  componentDidMount() {
+    console.log('CREATE SUB PROPS!!!!!!!! ', this.props)
+  }
+
   submitMap() {
     // console.log('hello', this.props);
     fetch("http://localhost:3000/api/map", {
@@ -35,7 +39,6 @@ class CreateComment extends React.Component {
       this.props.updateUpvoteThreshold(0);
       this.props.updateDistanceThreshold(0);
       this.props.updateMapDescription();
-      this.props.navigation.navigate('Home');
     })
     .catch(err => console.log(err));
   }
@@ -43,14 +46,14 @@ class CreateComment extends React.Component {
   render() {
     return (
       <View style={defaultStyles.containerAlt}>
-      <Text style={styles.title}>Create a New Map</Text>
+      <Text style={styles.title}>Create a New Hub</Text>
         <TextInput multiline = {true} style={styles.input} placeholder="Title" onChangeText={this.props.updateMapTitle}/>
         <TextInput  multiline = {true} numberOfLines = {4} style={styles.inputDescription} placeholder="Descriptions" onChangeText={this.props.updateMapDescription}/>
         <Text  >Upvote Threshold: </Text>
         <Slider style={{width:200}} maximumValue={10} step={1} onValueChange={this.props.updateUpvoteThreshold}/>
         <Text  >Distance Threshold: </Text>
         <Slider style={{width:200}} maximumValue={10} step={1} onValueChange={this.props.updateDistanceThreshold}/>
-        <Button title="Submit" onPress={this.submitMap}/>
+        <Button title="Submit" onPress={() => {this.submitMap(); this.props.navigation.navigate('Local')}}/>
       </View>
     );
   }
