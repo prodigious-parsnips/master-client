@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, ScrollView, View, TextInput, Alert } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import { Container, Header, Content, Tab, Tabs } from 'native-base';
 import { connect } from 'react-redux';
@@ -8,6 +9,8 @@ import StatusBarAlert from 'react-native-statusbar-alert'
 // https://github.com/oblador/react-native-vector-icons#installation
 
 class SignIn extends React.Component {
+
+  static navigationOptions = { drawerIcon: () => <Icon name={'sign-in'} size={20} color={'rgba(0, 124, 220, 100)'} /> }
 
   constructor(props){
     super(props)

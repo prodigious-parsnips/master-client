@@ -1,9 +1,15 @@
 import React from 'react';
 import { View, Text, TextInput, Button, Slider, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+
 import defaultStyles from '../styles'
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 class CreateComment extends React.Component {
+
+  static navigationOptions = { drawerIcon: () => <Icon name={'plus'} size={20} color={'rgba(0, 124, 220, 100)'} /> }
+
   constructor(props) {
     super(props);
     this.submitMap = this.submitMap.bind(this);
@@ -87,7 +93,6 @@ const styles = StyleSheet.create({
 
   title: {
     marginTop:10
-  } 
+  }
 
 })
-
