@@ -31,7 +31,7 @@ const Drawer = DrawerNavigator({
 
 Drawer.navigationOptions = (props) => {
   return {
-    title: 'Breaking News',
+    title: 'Scout',
     headerStyle: {backgroundColor: 'rgba(0, 124, 220, 100)'},
     headerTitleStyle: {color: 'white'},
     headerTintColor: 'white',

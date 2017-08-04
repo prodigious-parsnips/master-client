@@ -39,7 +39,7 @@ export default PostList = (props) => {
             rightContent={rightButtons}
             leftContent={leftButtons}
             leftActionActivationDistance={200}
-            onLeftActionRelease={() => {styles.leftSwipeItem.backgroundColor = 'green'; props.selectSub(item.subreddit_id)}}
+            onLeftActionRelease={() => props.selectSub(item.subreddit_id)}
           >
             <TouchableOpacity style={styles.container} onPress={() => props.selectPost(item)}>
               <PostPreview title={item.title} upvotes={item.upvotes} subTitle={item.subreddit_id} author={item.user_id}/>
@@ -49,7 +49,8 @@ export default PostList = (props) => {
       )}/>
 
   </View>
-)};
+)
+};
 
 
 

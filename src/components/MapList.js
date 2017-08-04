@@ -32,7 +32,7 @@ const localSub = {
 class MapList extends React.Component {
 
   static navigationOptions = { drawerIcon: () => <Icon name={'map'} size={20} color={'rgba(0, 124, 220, 100)'} /> }
-
+  
   constructor(props) {
     super(props);
     console.log('this is props in map list! ', props)
@@ -54,7 +54,7 @@ class MapList extends React.Component {
   }
   onMapClick(value){
     this.props.dispatch({type: 'SELECT_SUB', itemValue: value.mapData.id})
-    this.props.navigation.navigate('Home')
+    this.props.navigation.navigate('Local')
   }
 }
 
