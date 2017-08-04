@@ -1,11 +1,15 @@
 import React from 'react';
-import { ScrollView, Text, PickerIOS, View, Button } from 'react-native';
+import { ScrollView, Text, PickerIOS, View } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 import PostList from './PostList.js';
 import styles from '../styles';
 import SubredditList from './MapList';
 
 class SubbedMap extends React.Component {
+
+  static navigationOptions = { drawerIcon: () => <Icon name={'home'} size={20} color={'rgba(0, 124, 220, 100)'} /> }
+
   constructor(props) {
     super(props);
     this.viewPost = this.viewPost.bind(this);

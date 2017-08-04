@@ -3301,6 +3301,12 @@ react-native-statusbar-alert@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/react-native-statusbar-alert/-/react-native-statusbar-alert-0.2.0.tgz#49fe56727775751ab3b58f6c949e7c82e9b177c9"
 
+react-native-swipeable@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-swipeable/-/react-native-swipeable-0.6.0.tgz#0fe551330018b83c754d27f505709a594f554370"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-tab-navigator@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/react-native-tab-navigator/-/react-native-tab-navigator-0.3.3.tgz#b222bad21fbe773c8d28f9a0de30ce62b08724d3"

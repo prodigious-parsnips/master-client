@@ -1,7 +1,7 @@
-
 import React from 'react';
 import MapRow from './MapRow';
 import { View, ListView, StyleSheet, Text, TouchableHighlight} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 
 const styles = StyleSheet.create({
@@ -30,6 +30,9 @@ const localSub = {
 }
 
 class MapList extends React.Component {
+
+  static navigationOptions = { drawerIcon: () => <Icon name={'map'} size={20} color={'rgba(0, 124, 220, 100)'} /> }
+
   constructor(props) {
     super(props);
     console.log('this is props in map list! ', props)

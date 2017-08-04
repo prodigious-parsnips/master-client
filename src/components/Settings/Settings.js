@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dimensions, StyleSheet, Text, View, ScrollView, Button } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Accordion from 'react-native-collapsible/Accordion';
 import UserSettings from './UserSettings.js';
 import AdminSettings from './AdminSettings.js';
@@ -9,7 +10,7 @@ var { height, width } = Dimensions.get('window');
 
 class Settings extends React.Component {
   static navigationOptions = {
-    title: 'Settings',
+    drawerIcon: () => <Icon name={'gear'} size={20} color={'rgba(0, 124, 220, 100)'} />
   };
 
 

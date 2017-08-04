@@ -42,7 +42,6 @@ export default styles = StyleSheet.create({
     marginLeft: 35,
     color: '#f5f5f5'
   },
-
   textAlt: {
     fontSize: 13,
     fontWeight: 'bold',
@@ -65,7 +64,11 @@ export default styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 5
   },
-
-
+  rightSwipeItem: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingLeft: 20,
+    backgroundColor: '#D0E7F8'
+  },
 
 });
