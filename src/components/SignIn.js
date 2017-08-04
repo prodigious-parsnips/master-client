@@ -89,7 +89,7 @@ class SignIn extends React.Component {
 
               <Button
                 raised iconRight icon={{name: 'person'}}
-                title='Sign Into Scout' buttonStyle={styles.button}
+                title='Sign In To Scout' buttonStyle={styles.button}
                 onPress={()=>{this.props.handleSignIn(this.state.signIn, this.props.navigation.navigate)}}
               />
             </View>
